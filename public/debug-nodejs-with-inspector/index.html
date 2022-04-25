@@ -1,3 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>undefined</title>
+
+	<link rel='stylesheet' href='../normalize.css'>
+	<link rel='stylesheet' href='../base.css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/night-owl.min.css" integrity="sha512-i5X6Fdn/ZqvGSqPrdMa3FgcpXM/Nr6YccSKFYT93zljl/HZDEpvBbE5Pxp91eiWGccZLrL/LDQJd7fjTRYsVaA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+	<header> 
+		<h1>Sid's Blog</h1>
+	</header>
+	<hr class='top-divider'>
+	<hr>
+<p>title: Let's debug a node.js app using the built-in debugger.
+tags:</p>
+<ul>
+<li>node</li>
+<li>tip
+dev-tags:</li>
+<li>node</li>
+<li>javascript</li>
+<li>tutorial</li>
+<li>beginners
+hashnode-tags:</li>
+<li>JavaScript</li>
+<li>Node.js</li>
+<li>Tutorial</li>
+<li>Beginner Developers
+slug: debug-nodejs
+cta: Did you know you can debug node.js apps without any external tools, just with the node CLI? Yes!
+cover: img/debugging.png
+date: 2022-04-25</li>
+</ul>
+<hr>
 <p>It's about time we stop using <code>console.log</code> to debug things. While <a href="https://blog.siddu.tech/7-console-log-alternatives"><code>console.*</code> are really powerfull tools</a>, it's a pain to maintain.</p>
 <p>Most of us can use our IDEs to debug code. But did you know that Node.js comes with a built-in debugger? It's a simple terminal based one, but extremely powerful, too. Let's check it out by debugging a sample app using the built-in debugger</p>
 <h2>The code</h2>
@@ -9,7 +48,7 @@ console.log(out);
 </code></pre>
 <p>If you are a seasoned developer, you should have caught the bugs already. But forget it.</p>
 <p>Here's some sample output from this program:</p>
-<pre><code class="language-bash">$ node index.js 1 2 3 4
+<pre><code class="language-shell">$ node index.js 1 2 3 4
 /usr/local/Cellar/node/17.5.0/bin/node/Users/mac/Blog/Code/node-debug/index.js1234
 </code></pre>
 <h2>Firing up the debugger.</h2>
@@ -17,7 +56,7 @@ console.log(out);
 <p>The first way is to run <code>node --inspect file.js</code>. This starts a websocket connection to the debugger and clients can use this connection to debug the code.</p>
 <p>The second way is to use the built-in inspector client, using <code>node inspect file.js</code> (note that it's a command now, not a <code>--flag</code>)</p>
 <p>We can start the inspector for our app by running <code>node inspect index.js</code></p>
-<pre><code class="language-bash">$ node inspect index.js
+<pre><code class="language-shell">$ node inspect index.js
 &#x3C; Debugger listening on ws://127.0.0.1:9229/516c8247-4fe0-471d-9c71-a87aa191b256
 &#x3C; For help, see: https://nodejs.org/en/docs/inspector
 &#x3C;
@@ -41,7 +80,7 @@ debug>
 </ul>
 <p>For now, let's press <code>n&#x3C;enter></code> to go to the next line.
 The debugger will look like this now:</p>
-<pre><code class="language-bash">break in index.js:2
+<pre><code class="language-shell">break in index.js:2
   1 const numbers = process.argv;
 > 2 const sum = (a, b) => a + b;
   3 let out = numbers.reduce(sum);
@@ -51,7 +90,7 @@ debug>
 <p>We are at the second line now.</p>
 <p>Now, we know that there is something wrong with the <code>numbers</code> array. We can take a look at it's value by "watching" it. We can run the command <code>watch('numbers')</code> to do so. Then, we can use the <code>watchers</code> command to print all watched variables.</p>
 <p>This is what it will look like now:</p>
-<pre><code class="language-bash">debug> watch('numbers')
+<pre><code class="language-shell">debug> watch('numbers')
 debug> watchers
   0: numbers =
     [ '/usr/local/Cellar/node/17.5.0/bin/node',
@@ -67,7 +106,7 @@ console.log(out);
 </code></pre>
 <p>...but it's still broken! <code>node index.js 1 2 3 4</code> just prints <code>1234</code>.</p>
 <p>Let's try debugging again. Fire up the debugger again and head to the third line, where the addition goes on.</p>
-<pre><code class="language-bash">$ node inspect index.js 1 2 3 4 # notice how we can pass arguments
+<pre><code class="language-shell">$ node inspect index.js 1 2 3 4 # notice how we can pass arguments
 &#x3C; Debugger listening on ws://127.0.0.1:9229/0db8e855-c117-4511-a022-ab5c908cff46
 &#x3C; For help, see: https://nodejs.org/en/docs/inspector
 &#x3C;
@@ -95,7 +134,7 @@ debug>
 </code></pre>
 <p>Now, instead of going to the next line, we can <code>step</code> into the line so we know what exactly is going on.</p>
 <p>Pressing <code>s</code> will move us back to the <code>sum</code> call. Now, we can watch <code>a</code> and <code>b</code>.</p>
-<pre><code class="language-bash">debug> step
+<pre><code class="language-shell">debug> step
 break in index.js:2
   1 const numbers = process.argv.slice(2);
 > 2 const sum = (a, b) => a + b;
@@ -118,3 +157,14 @@ console.log(out);
 <h2>Wrap!</h2>
 <p>The Node.js builtin debugger can be a life-saver when you don't have a proper IDE at hand. You should take a moment to check out the <a href="https://nodejs.org/api/debugger.html">official documentation</a> for the debugger so you can understand the rest of the features. You could even build your own client!</p>
 <p>What's your favourite debugging tool? 👀</p>
+
+	<hr class='top-divider'>
+	<footer>
+		<p>&copy; <%= new Date().getFullYear() %> <a
+				href='https://siddu.tech'>Sid</a>. All blog post writing is licensed
+			<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC
+				BY-SA 4.0</a>. All source code is released to the public domain</p>
+	</footer>
+</body>
+</html>
+	

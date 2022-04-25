@@ -1,0 +1,139 @@
+
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Let's debug a node.js app using the built-in debugger.</title>
+
+		<link rel='stylesheet' href='../normalize.css'>
+		<link rel='stylesheet' href='../base.css'>
+		<link rel='stylesheet' href='../shiki.css'>
+		</head>
+		<body>
+		<header> 
+		<h1>Sid's Blog</h1>
+		</header>
+		<hr class='top-divider'>
+		<p>It's about time we stop using <code>console.log</code> to debug things. While <a href="https://blog.siddu.tech/7-console-log-alternatives"><code>console.*</code> are really powerfull tools</a>, it's a pain to maintain.</p>
+<p>Most of us can use our IDEs to debug code. But did you know that Node.js comes with a built-in debugger? It's a simple terminal based one, but extremely powerful, too. Let's check it out by debugging a sample app using the built-in debugger</p>
+<h2>The code</h2>
+<p>This is the simple program we are going to be debugging right now:</p>
+<pre class="shiki" style="background-color: #011627"><code><span class="line"><span style="color: #C792EA">const</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #82AAFF; font-style: italic">numbers</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #7FDBCA; font-style: italic">process</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #BAEBE2; font-style: italic">argv</span><span style="color: #D6DEEB">;</span></span>
+<span class="line"><span style="color: #C792EA">const</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #82AAFF; font-style: italic">sum</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D9F5DD">(</span><span style="color: #D7DBE0; font-style: italic">a</span><span style="color: #C792EA">,</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0; font-style: italic">b</span><span style="color: #D9F5DD">)</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=&gt;</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0">a</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">+</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0">b</span><span style="color: #D6DEEB">;</span></span>
+<span class="line"><span style="color: #C792EA">let</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0">out</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #7FDBCA; font-style: italic">numbers</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #82AAFF; font-style: italic">reduce</span><span style="color: #D6DEEB">(</span><span style="color: #D7DBE0">sum</span><span style="color: #D6DEEB">);</span></span>
+<span class="line"><span style="color: #7FDBCA; font-style: italic">console</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #82AAFF; font-style: italic">log</span><span style="color: #D6DEEB">(</span><span style="color: #D7DBE0">out</span><span style="color: #D6DEEB">);</span></span></code></pre>
+<p>If you are a seasoned developer, you should have caught the bugs already. But forget it.</p>
+<p>Here's some sample output from this program:</p>
+<pre class="shiki" style="background-color: #011627"><code><span class="line"><span style="color: #D6DEEB">$ node index.js 1 2 3 4</span></span>
+<span class="line"><span style="color: #D6DEEB">/usr/local/Cellar/node/17.5.0/bin/node/Users/mac/Blog/Code/node-debug/index.js1234</span></span></code></pre>
+<h2>Firing up the debugger.</h2>
+<p>Node.js has two ways to start the debugger.</p>
+<p>The first way is to run <code>node --inspect file.js</code>. This starts a websocket connection to the debugger and clients can use this connection to debug the code.</p>
+<p>The second way is to use the built-in inspector client, using <code>node inspect file.js</code> (note that it's a command now, not a <code>--flag</code>)</p>
+<p>We can start the inspector for our app by running <code>node inspect index.js</code></p>
+<pre class="shiki" style="background-color: #011627"><code><span class="line"><span style="color: #D6DEEB">$ node inspect index.js</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span><span style="color: #D6DEEB"> Debugger listening on ws://127.0.0.1:9229/516c8247-4fe0-471d-9c71-a87aa191b256</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span><span style="color: #D6DEEB"> For help, see: https://nodejs.org/en/docs/inspector</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span><span style="color: #D6DEEB"> Debugger attached.</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span></span>
+<span class="line"><span style="color: #D6DEEB"> ok</span></span>
+<span class="line"><span style="color: #D6DEEB">Break on start </span><span style="color: #C792EA; font-style: italic">in</span><span style="color: #D6DEEB"> index.js:1</span></span>
+<span class="line"><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> 1 const numbers = process.argv</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  2 const sum = (a, b) =</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> a + b</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  3 </span><span style="color: #C5E478">let</span><span style="color: #D6DEEB"> out = numbers.reduce(sum)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span></span></code></pre>
+<p>This gives us a debug prompt, where we can run commands to debug the code.</p>
+<p>The basic ones are:</p>
+<ul>
+<li><code>cont</code>, <code>c</code>: Continue execution</li>
+<li><code>next</code>, <code>n</code>: Step next</li>
+<li><code>step</code>, <code>s</code>: Step in</li>
+<li><code>out</code>, <code>o</code>: Step out</li>
+<li><code>repl</code>: Enter a repl in the current scope.</li>
+</ul>
+<p>For now, let's press <code>n&#x3C;enter></code> to go to the next line.
+The debugger will look like this now:</p>
+<pre class="shiki" style="background-color: #011627"><code><span class="line"><span style="color: #C5E478">break</span><span style="color: #D6DEEB"> </span><span style="color: #C792EA; font-style: italic">in</span><span style="color: #D6DEEB"> index.js:2</span></span>
+<span class="line"><span style="color: #D6DEEB">  1 const numbers = process.argv</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> 2 const sum = (a, b) =</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> a + b</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  3 </span><span style="color: #C5E478">let</span><span style="color: #D6DEEB"> out = numbers.reduce(sum)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  4 console.log(out)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span></span></code></pre>
+<p>We are at the second line now.</p>
+<p>Now, we know that there is something wrong with the <code>numbers</code> array. We can take a look at it's value by "watching" it. We can run the command <code>watch('numbers')</code> to do so. Then, we can use the <code>watchers</code> command to print all watched variables.</p>
+<p>This is what it will look like now:</p>
+<pre class="shiki" style="background-color: #011627"><code><span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> watch(</span><span style="color: #D9F5DD">&#39;</span><span style="color: #ECC48D">numbers</span><span style="color: #D9F5DD">&#39;</span><span style="color: #D6DEEB">)</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> watchers</span></span>
+<span class="line"><span style="color: #D6DEEB">  0: numbers =</span></span>
+<span class="line"><span style="color: #D6DEEB">    [ </span><span style="color: #D9F5DD">&#39;</span><span style="color: #ECC48D">/usr/local/Cellar/node/17.5.0/bin/node</span><span style="color: #D9F5DD">&#39;</span><span style="color: #D6DEEB">,</span></span>
+<span class="line"><span style="color: #D6DEEB">      </span><span style="color: #D9F5DD">&#39;</span><span style="color: #ECC48D">/Users/mac/Blog/Code/node-debug/index.js</span><span style="color: #D9F5DD">&#39;</span><span style="color: #D6DEEB"> ]</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span></span></code></pre>
+<p>We just spotted the bug! We forgot to get rid of the first 2 arguments in the <code>process.argv</code> 🤦. Silly me!</p>
+<p>Let's fix the code. First, exit the debugger with <code>Ctrl-d</code>, then modify the first line:</p>
+<pre class="shiki" style="background-color: #011627"><code><span class="line"><span style="color: #C792EA">const</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #82AAFF; font-style: italic">numbers</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #7FDBCA; font-style: italic">process</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #FAF39F; font-style: italic">argv</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #82AAFF; font-style: italic">slice</span><span style="color: #D6DEEB">(</span><span style="color: #F78C6C">2</span><span style="color: #D6DEEB">);;</span></span>
+<span class="line"><span style="color: #C792EA">const</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #82AAFF; font-style: italic">sum</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D9F5DD">(</span><span style="color: #D7DBE0; font-style: italic">a</span><span style="color: #C792EA">,</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0; font-style: italic">b</span><span style="color: #D9F5DD">)</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=&gt;</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0">a</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">+</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0">b</span><span style="color: #D6DEEB">;</span></span>
+<span class="line"><span style="color: #C792EA">let</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0">out</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #7FDBCA; font-style: italic">numbers</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #82AAFF; font-style: italic">reduce</span><span style="color: #D6DEEB">(</span><span style="color: #D7DBE0">sum</span><span style="color: #D6DEEB">);</span></span>
+<span class="line"><span style="color: #7FDBCA; font-style: italic">console</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #82AAFF; font-style: italic">log</span><span style="color: #D6DEEB">(</span><span style="color: #D7DBE0">out</span><span style="color: #D6DEEB">);</span></span></code></pre>
+<p>...but it's still broken! <code>node index.js 1 2 3 4</code> just prints <code>1234</code>.</p>
+<p>Let's try debugging again. Fire up the debugger again and head to the third line, where the addition goes on.</p>
+<pre class="shiki" style="background-color: #011627"><code><span class="line"><span style="color: #D6DEEB">$ node inspect index.js 1 2 3 4 </span><span style="color: #637777">#</span><span style="color: #637777; font-style: italic"> notice how we can pass arguments</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span><span style="color: #D6DEEB"> Debugger listening on ws://127.0.0.1:9229/0db8e855-c117-4511-a022-ab5c908cff46</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span><span style="color: #D6DEEB"> For help, see: https://nodejs.org/en/docs/inspector</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span><span style="color: #D6DEEB"> Debugger attached.</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span></span>
+<span class="line"><span style="color: #D6DEEB"> ok</span></span>
+<span class="line"><span style="color: #D6DEEB">Break on start </span><span style="color: #C792EA; font-style: italic">in</span><span style="color: #D6DEEB"> index.js:1</span></span>
+<span class="line"><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> 1 const numbers = process.argv.slice(2)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  2 const sum = (a, b) =</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> a + b</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  3 </span><span style="color: #C5E478">let</span><span style="color: #D6DEEB"> out = numbers.reduce(sum)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> n</span></span>
+<span class="line"><span style="color: #C5E478">break</span><span style="color: #D6DEEB"> </span><span style="color: #C792EA; font-style: italic">in</span><span style="color: #D6DEEB"> index.js:2</span></span>
+<span class="line"><span style="color: #D6DEEB">  1 const numbers = process.argv.slice(2)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> 2 const sum = (a, b) =</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> a + b</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  3 </span><span style="color: #C5E478">let</span><span style="color: #D6DEEB"> out = numbers.reduce(sum)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  4 console.log(out)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> n</span></span>
+<span class="line"><span style="color: #C5E478">break</span><span style="color: #D6DEEB"> </span><span style="color: #C792EA; font-style: italic">in</span><span style="color: #D6DEEB"> index.js:3</span></span>
+<span class="line"><span style="color: #D6DEEB">  1 const numbers = process.argv.slice(2)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  2 const sum = (a, b) =</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> a + b</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> 3 </span><span style="color: #C5E478">let</span><span style="color: #D6DEEB"> out = numbers.reduce(sum)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  4 console.log(out)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  5</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span></span></code></pre>
+<p>Now, instead of going to the next line, we can <code>step</code> into the line so we know what exactly is going on.</p>
+<p>Pressing <code>s</code> will move us back to the <code>sum</code> call. Now, we can watch <code>a</code> and <code>b</code>.</p>
+<pre class="shiki" style="background-color: #011627"><code><span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> step</span></span>
+<span class="line"><span style="color: #C5E478">break</span><span style="color: #D6DEEB"> </span><span style="color: #C792EA; font-style: italic">in</span><span style="color: #D6DEEB"> index.js:2</span></span>
+<span class="line"><span style="color: #D6DEEB">  1 const numbers = process.argv.slice(2)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> 2 const sum = (a, b) =</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> a + b</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  3 </span><span style="color: #C5E478">let</span><span style="color: #D6DEEB"> out = numbers.reduce(sum)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">  4 console.log(out)</span><span style="color: #7FDBCA">;</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> watch(</span><span style="color: #D9F5DD">&#39;</span><span style="color: #ECC48D">a</span><span style="color: #D9F5DD">&#39;</span><span style="color: #D6DEEB">)</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> watch(</span><span style="color: #D9F5DD">&#39;</span><span style="color: #ECC48D">b</span><span style="color: #D9F5DD">&#39;</span><span style="color: #D6DEEB">)</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB"> watchers</span></span>
+<span class="line"><span style="color: #D6DEEB">  0: a = </span><span style="color: #D9F5DD">&#39;</span><span style="color: #ECC48D">1</span><span style="color: #D9F5DD">&#39;</span></span>
+<span class="line"><span style="color: #D6DEEB">  1: b = </span><span style="color: #D9F5DD">&#39;</span><span style="color: #ECC48D">2</span><span style="color: #D9F5DD">&#39;</span></span>
+<span class="line"><span style="color: #D6DEEB">debug</span><span style="color: #7FDBCA">&gt;</span></span></code></pre>
+<p>We just spotted the second bug! We are trying to add two strings of numbers, instead of strings. Let's fix that right away by converting all the strings to numbers:</p>
+<pre class="shiki" style="background-color: #011627"><code><span class="line"><span style="color: #C792EA">const</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #82AAFF; font-style: italic">numbers</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #7FDBCA; font-style: italic">process</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #FAF39F; font-style: italic">argv</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #82AAFF; font-style: italic">slice</span><span style="color: #D6DEEB">(</span><span style="color: #F78C6C">2</span><span style="color: #D6DEEB">)</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #82AAFF; font-style: italic">map</span><span style="color: #D6DEEB">(</span><span style="color: #C5E478; font-style: italic">Number</span><span style="color: #D6DEEB">);</span></span>
+<span class="line"><span style="color: #C792EA">const</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #82AAFF; font-style: italic">sum</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D9F5DD">(</span><span style="color: #D7DBE0; font-style: italic">a</span><span style="color: #C792EA">,</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0; font-style: italic">b</span><span style="color: #D9F5DD">)</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=&gt;</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0">a</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">+</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0">b</span><span style="color: #D6DEEB">;</span></span>
+<span class="line"><span style="color: #C792EA">let</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0">out</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #7FDBCA; font-style: italic">numbers</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #82AAFF; font-style: italic">reduce</span><span style="color: #D6DEEB">(</span><span style="color: #D7DBE0">sum</span><span style="color: #D6DEEB">);</span></span>
+<span class="line"><span style="color: #7FDBCA; font-style: italic">console</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #82AAFF; font-style: italic">log</span><span style="color: #D6DEEB">(</span><span style="color: #D7DBE0">out</span><span style="color: #D6DEEB">);</span></span></code></pre>
+<p>Running this program <code>node index.js 1 2 3 4</code> will now correctly output 10. Yay!</p>
+<h2>Wrap!</h2>
+<p>The Node.js builtin debugger can be a life-saver when you don't have a proper IDE at hand. You should take a moment to check out the <a href="https://nodejs.org/api/debugger.html">official documentation</a> for the debugger so you can understand the rest of the features. You could even build your own client!</p>
+<p>What's your favourite debugging tool? 👀</p>
+
+		<hr class='top-divider'>
+		<footer>
+		<p>&copy; 2022 <a
+		href='https://siddu.tech'>Sid</a>. All blog post writing is licensed
+		<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC
+		BY-SA 4.0</a>. All source code is released to the public domain</p>
+		</footer>
+		</body>
+		</html>
+		

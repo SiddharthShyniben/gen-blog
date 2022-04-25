@@ -38,7 +38,7 @@ If you are a seasoned developer, you should have caught the bugs already. But fo
 
 Here's some sample output from this program:
 
-```bash
+```shell
 $ node index.js 1 2 3 4
 /usr/local/Cellar/node/17.5.0/bin/node/Users/mac/Blog/Code/node-debug/index.js1234
 ```
@@ -53,7 +53,7 @@ The second way is to use the built-in inspector client, using `node inspect file
 
 We can start the inspector for our app by running `node inspect index.js`
 
-```bash
+```shell
 $ node inspect index.js
 < Debugger listening on ws://127.0.0.1:9229/516c8247-4fe0-471d-9c71-a87aa191b256
 < For help, see: https://nodejs.org/en/docs/inspector
@@ -81,7 +81,7 @@ The basic ones are:
 For now, let's press `n<enter>` to go to the next line.
 The debugger will look like this now:
 
-```bash
+```shell
 break in index.js:2
   1 const numbers = process.argv;
 > 2 const sum = (a, b) => a + b;
@@ -96,7 +96,7 @@ Now, we know that there is something wrong with the `numbers` array. We can take
 
 This is what it will look like now:
 
-```bash
+```shell
 debug> watch('numbers')
 debug> watchers
   0: numbers =
@@ -120,7 +120,7 @@ console.log(out);
 
 Let's try debugging again. Fire up the debugger again and head to the third line, where the addition goes on.
 
-```bash
+```shell
 $ node inspect index.js 1 2 3 4 # notice how we can pass arguments
 < Debugger listening on ws://127.0.0.1:9229/0db8e855-c117-4511-a022-ab5c908cff46
 < For help, see: https://nodejs.org/en/docs/inspector
@@ -152,7 +152,7 @@ Now, instead of going to the next line, we can `step` into the line so we know w
 
 Pressing `s` will move us back to the `sum` call. Now, we can watch `a` and `b`.
 
-```bash
+```shell
 debug> step
 break in index.js:2
   1 const numbers = process.argv.slice(2);
