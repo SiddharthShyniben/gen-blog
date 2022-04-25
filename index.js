@@ -1,6 +1,6 @@
 import {ls} from './utils.js';
 import {basename} from 'path';
-import {readFileSync, writeFileSync} from 'fs';
+import {readFileSync, writeFileSync, rmSync, mkdirSync} from 'fs';
 import {unified} from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
@@ -11,11 +11,15 @@ import {parse} from 'yaml';
 
 const files = await ls('blog-posts/');
 
-Promise.all(files.map(process)).then(files => files.forEach(write));
+Promise
+	.all(files.map(process))
+	.then(files => 
+		writeMetaData(files
+			.map(write))
+	);
 
 async function process(file) {
 	const content = readFileSync(file, 'utf-8');
-	const slug = basename(file, '.md') + '.html';
 
 	let frontmatter = null;
 
@@ -34,13 +38,24 @@ async function process(file) {
 		.use(rehypeStringify)
 		.process(content);
 
+	let slug = (frontmatter?.slug ?? basename(file, '.md')) + '.html';
+	if (frontmatter.date) frontmatter.date = new Date(frontmatter.date).getTime();
+
 	return {
 		slug,
-		content: JSON.stringify(frontmatter, null, '\t') + '\n\n\n\n\n\n' + String(rendered)
+		content: String(rendered),
+		frontmatter
 	};
 }
 
+rmSync('out', {recursive: true, force: true})
+mkdirSync('out')
 function write(data) {
-	const {slug, content} = data;
+	const {slug, content, frontmatter} = data;
 	writeFileSync(`./out/${slug}`, content);
+	return frontmatter;
+}
+
+function writeMetaData(posts) {
+	writeFileSync('meta.json', JSON.stringify({posts}, null, '\t'))
 }

@@ -1,5 +1,5 @@
 ---
-title: Let's debug a node.js app using the built-in debugger.
+title: Let's debug a node.js app using the built-in debugger, again
 tags:
 - node
 - tip
@@ -14,9 +14,9 @@ hashnode-tags:
 - Tutorial
 - Beginner Developers
 slug: debug-nodejs
-cta: Did you know you can debug node.js apps without any external tools, just with the node CLI? Yes!
+cta: Did you know you cadfsfn debug node.js apps without any external tools, just with the node CLI? Yes!
 cover: img/debugging.png
-date: 2022-04-25
+date: 2022-01-25
 ---
 
 It's about time we stop using `console.log` to debug things. While [`console.*` are really powerfull tools](https://blog.siddu.tech/7-console-log-alternatives), it's a pain to maintain.

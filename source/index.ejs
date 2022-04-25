@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset='UTF-8'>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+		<title>Sid's Blog</title>
+
+		<link rel='stylesheet' href='normalize.css'>
+		<link rel='stylesheet' href='base.css'>
+	</head>
+	<body>
+		<header>
+			<h1>Sid's Blog</h1>
+		</header>
+		<hr class='top-divider'>
+		<% const sortedPosts = posts.sort((a, b) => a.date - b.date); %>
+
+		<% if (sortedPosts[0]) { %>
+			<div class='post top'>
+				<% if (sortedPosts[0].cover) { %>
+					<img src='<%= sortedPosts[0].cover %>' alt='<%= sortedPosts[0].title %>' class='cover'>
+				<% } %>
+				<h2><%= sortedPosts[0].title %></h2>
+				<p class='cta'><%= sortedPosts[0].cta %></p>
+				<p><%- sortedPosts[0].tags.map(a => `<a class='tag' href='/tag/${a}'>${a}</a>`).join('') %></p>
+			</div>
+		<% } %>
+
+		<hr class='top-divider'>
+
+		<div class='two-column'>
+			<% sortedPosts.slice(1).forEach(post => { %>
+				<div class='post'>
+					<% if (post.cover) { %>
+						<img src='<%= post.cover %>' alt='<%= post.title %>' class='cover'>
+					<% } %>
+					<h2><%= post.title %></h2>
+					<p class='cta'><%= post.cta %></p>
+					<p><%- post.tags.map(a => `<a class='tag' href='/tag/${a}'>${a}</a>`).join('') %></p>
+				</div>
+			<% }); %>
+		</div>
+
+		<hr class='top-divider'>
+		<footer>
+			<p>&copy; <%= new Date().getFullYear() %> <a
+					href='https://siddu.tech'>Sid</a>. All blog post writing is licensed
+				<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC
+					BY-SA 4.0</a>. All source code is released to the public domain</p>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,119 @@
+{
+	"posts": [
+		{
+			"title": "Let's debug a node.js app using the built-in debugger, v2",
+			"tags": [
+				"node",
+				"tip"
+			],
+			"dev-tags": [
+				"node",
+				"javascript",
+				"tutorial",
+				"beginners"
+			],
+			"hashnode-tags": [
+				"JavaScript",
+				"Node.js",
+				"Tutorial",
+				"Beginner Developers"
+			],
+			"slug": "debug-nodejs",
+			"cta": "Did you know you can debug node.js apps without any external tools, just with the node CLI? Yes!",
+			"cover": "img/debugging.png",
+			"date": 1651104000000
+		},
+		{
+			"title": "Let's debug a node.js app using the built-in debugger, again",
+			"tags": [
+				"node",
+				"tip"
+			],
+			"dev-tags": [
+				"node",
+				"javascript",
+				"tutorial",
+				"beginners"
+			],
+			"hashnode-tags": [
+				"JavaScript",
+				"Node.js",
+				"Tutorial",
+				"Beginner Developers"
+			],
+			"slug": "debug-nodejs",
+			"cta": "Did you know you cadfsfn debug node.js apps without any external tools, just with the node CLI? Yes!",
+			"cover": "img/debugging.png",
+			"date": 1643068800000
+		},
+		{
+			"title": "Let's debug a node.js app using the built-in debugger, again",
+			"tags": [
+				"node",
+				"tip"
+			],
+			"dev-tags": [
+				"node",
+				"javascript",
+				"tutorial",
+				"beginners"
+			],
+			"hashnode-tags": [
+				"JavaScript",
+				"Node.js",
+				"Tutorial",
+				"Beginner Developers"
+			],
+			"slug": "debug-nodejs",
+			"cta": "Did you know you cadfsfn debug node.js apps without any external tools, just with the node CLI? Yes!",
+			"cover": "img/debugging.png",
+			"date": 1643068800000
+		},
+		{
+			"title": "Let's debug a node.js app using the built-in debugger, again",
+			"tags": [
+				"node",
+				"tip"
+			],
+			"dev-tags": [
+				"node",
+				"javascript",
+				"tutorial",
+				"beginners"
+			],
+			"hashnode-tags": [
+				"JavaScript",
+				"Node.js",
+				"Tutorial",
+				"Beginner Developers"
+			],
+			"slug": "debug-nodejs",
+			"cta": "Did you know you cadfsfn debug node.js apps without any external tools, just with the node CLI? Yes!",
+			"cover": "img/debugging.png",
+			"date": 1643068800000
+		},
+		{
+			"title": "Let's debug a node.js app using the built-in debugger.",
+			"tags": [
+				"node",
+				"tip"
+			],
+			"dev-tags": [
+				"node",
+				"javascript",
+				"tutorial",
+				"beginners"
+			],
+			"hashnode-tags": [
+				"JavaScript",
+				"Node.js",
+				"Tutorial",
+				"Beginner Developers"
+			],
+			"slug": "debug-nodejs",
+			"cta": "Did you know you can debug node.js apps without any external tools, just with the node CLI? Yes!",
+			"cover": "img/debugging.png",
+			"date": 1650844800000
+		}
+	]
+}
