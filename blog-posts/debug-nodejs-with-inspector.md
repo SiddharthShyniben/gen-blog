@@ -1,5 +1,8 @@
 ---
 title: Let's debug a node.js app using the built-in debugger.
+tags:
+- node
+- tip
 dev-tags: 
 - node
 - javascript
