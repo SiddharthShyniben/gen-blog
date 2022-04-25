@@ -12,6 +12,14 @@ tags:
 ```
 
 ```typescript twoslash
-const ba = 1;
-//    ^?
+let msg = 'hello world';
+//  ^?
+
+// @noErrors
+msg.c
+//   ^|
+
+
+
+
 ```

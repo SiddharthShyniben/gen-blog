@@ -20,8 +20,14 @@
 				<% if (sortedPosts[0].cover) { %>
 					<img src='<%= sortedPosts[0].cover %>' alt='<%= sortedPosts[0].title %>' class='cover'>
 				<% } %>
-				<h2><%= sortedPosts[0].title %></h2>
-				<p class='cta'><%= sortedPosts[0].cta %></p>
+				<h2>
+					<a href='/<%= sortedPosts[0].slug %>'>
+						<%= sortedPosts[0].title %>
+					</a>
+				</h2>
+				<% if (sortedPosts[0].cta) { %>
+					<p class='cta'><%= sortedPosts[0].cta %></p>
+				<% } %>
 				<p><%- sortedPosts[0].tags.map(a => `<a class='tag' href='/tag/${a}'>${a}</a>`).join('') %></p>
 			</div>
 		<% } %>
@@ -34,8 +40,14 @@
 					<% if (post.cover) { %>
 						<img src='<%= post.cover %>' alt='<%= post.title %>' class='cover'>
 					<% } %>
-					<h2><%= post.title %></h2>
-					<p class='cta'><%= post.cta %></p>
+					<h2>
+						<a href='/<%= post.slug %>'>
+							<%= post.title %>
+						</a>
+					</h2>
+					<% if (post.cta) { %>
+						<p class='cta'><%= post.cta %></p>
+					<% } %>
 					<p><%- post.tags.map(a => `<a class='tag' href='/tag/${a}'>${a}</a>`).join('') %></p>
 				</div>
 			<% }); %>
