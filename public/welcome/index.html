@@ -15,7 +15,7 @@
 		<h1>Sid's Blog</h1>
 		</header>
 		<hr class='top-divider'>
-		<h2>Table of Contents</h2>
+		<h2 id="table-of-contents"><a aria-hidden="true" tabindex="-1" href="#table-of-contents"><span class="icon icon-link"></span></a>Table of Contents</h2>
 <ol>
 <li><a href="#better-code-blocks">Better code blocks</a></li>
 <li><a href="#todo">TODO</a>
@@ -37,7 +37,7 @@
 </li>
 <li><a href="#more-stuff">More stuff</a></li>
 </ol>
-<h2>Better code blocks</h2>
+<h2 id="better-code-blocks"><a aria-hidden="true" tabindex="-1" href="#better-code-blocks"><span class="icon icon-link"></span></a>Better code blocks</h2>
 <p>The one feature which was the hugest headache is this:</p>
 <pre class="shiki twoslash lsp" style="background-color: #011627; color: #d6deeb"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #C792EA">const</span><span style="color: #C792EA"> </span><span style="color: #82AAFF"><data-lsp lsp='const message: "Hello world!"' >message</data-lsp></span><span style="color: #C792EA"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA"> </span><span style="color: #D9F5DD">&apos;</span><span style="color: #ECC48D">Hello world!</span><span style="color: #D9F5DD">&apos;</span><span style="color: #D6DEEB">;</span></div><div class='line'><span style="color: #C792EA">const</span><span style="color: #C792EA"> </span><span style="color: #82AAFF"><data-lsp lsp='const sum: (a: number, b: number) => number' >sum</data-lsp></span><span style="color: #C792EA"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA"> </span><span style="color: #D9F5DD">(</span><span style="color: #D7DBE0"><data-lsp lsp='(parameter) a: number' >a</data-lsp></span><span style="color: #7FDBCA">:</span><span style="color: #C792EA"> </span><span style="color: #C5E478">number</span><span style="color: #C792EA">,</span><span style="color: #C792EA"> </span><span style="color: #D7DBE0"><data-lsp lsp='(parameter) b: number' >b</data-lsp></span><span style="color: #7FDBCA">:</span><span style="color: #C792EA"> </span><span style="color: #C5E478">number</span><span style="color: #D9F5DD">)</span><span style="color: #C792EA"> </span><span style="color: #C792EA">=&gt;</span><span style="color: #C792EA"> </span><span style="color: #D6DEEB"><data-lsp lsp='(parameter) a: number' >a</data-lsp></span><span style="color: #C792EA"> </span><span style="color: #C792EA">+</span><span style="color: #C792EA"> </span><span style="color: #D6DEEB"><data-lsp lsp='(parameter) b: number' >b</data-lsp></span><span style="color: #D6DEEB">;</span></div><div class='line'><span style="color: #D6DEEB"><data-lsp lsp='var console: Console' >console</data-lsp></span><span style="color: #C792EA">.</span><span style="color: #82AAFF"><data-lsp lsp='(method) Console.log(...data: any[]): void' >log</data-lsp></span><span style="color: #D6DEEB">(</span><span style="color: #82AAFF"><data-lsp lsp='const sum: (a: number, b: number) => number' >sum</data-lsp></span><span style="color: #D6DEEB">(</span><span style="color: #F78C6C">1</span><span style="color: #D6DEEB">, <data-err><data-lsp lsp='const message: "Hello world!"' >message</data-lsp></data-err>));</span></div><span class="error"><span>Argument of type 'string' is not assignable to parameter of type 'number'.</span><span class="code">2345</span></span><span class="error-behind">Argument of type 'string' is not assignable to parameter of type 'number'.</span></code></div></pre>
 <p>🤯</p>
@@ -75,7 +75,7 @@ function increment() {
 <p>And if you're curious, the beautiful highlight comes from
 <a href="https://shiki.matsu.io/">Shiki</a>. It uses TextMate grammars used by most IDEs to
 get the syntax <em>just</em> right!</p>
-<h2>TODO<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup></h2>
+<h2 id="todo1"><a aria-hidden="true" tabindex="-1" href="#todo1"><span class="icon icon-link"></span></a>TODO<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup></h2>
 <ul class="contains-task-list">
 <li class="task-list-item"><input type="checkbox" disabled> Analytics</li>
 <li class="task-list-item"><input type="checkbox" disabled> Fix the tag links in the homepage</li>
@@ -83,11 +83,11 @@ get the syntax <em>just</em> right!</p>
 <li class="task-list-item"><input type="checkbox" disabled> SEO</li>
 <li class="task-list-item"><input type="checkbox" disabled> Drafts? (Then I would have to make this closed source :( )</li>
 </ul>
-<h3>Yes</h3>
-<h4>It's</h4>
-<h5>A</h5>
-<h6>TOC</h6>
-<h2>More stuff</h2>
+<h3 id="yes"><a aria-hidden="true" tabindex="-1" href="#yes"><span class="icon icon-link"></span></a>Yes</h3>
+<h4 id="its"><a aria-hidden="true" tabindex="-1" href="#its"><span class="icon icon-link"></span></a>It's</h4>
+<h5 id="a"><a aria-hidden="true" tabindex="-1" href="#a"><span class="icon icon-link"></span></a>A</h5>
+<h6 id="toc"><a aria-hidden="true" tabindex="-1" href="#toc"><span class="icon icon-link"></span></a>TOC</h6>
+<h2 id="more-stuff"><a aria-hidden="true" tabindex="-1" href="#more-stuff"><span class="icon icon-link"></span></a>More stuff</h2>
 <p>While we're at it, let's try some more stuff:</p>
 <p><svg xmlns:xlink="http://www.w3.org/1999/xlink" height="233" fill="#ccc" font-family="&#x22;trebuchet ms&#x22;,verdana,arial,sans-serif" font-size="16px" style="max-width:124.640625px" viewBox="0 0 124.641 233">
   <defs>

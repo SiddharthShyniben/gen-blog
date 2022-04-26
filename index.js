@@ -22,6 +22,7 @@ import retextPassive from 'retext-passive';
 import retextReadability from 'retext-readability';
 import retextSimplify from 'retext-simplify';
 import dictionary from 'dictionary-en';
+import rehypeSlug from 'rehype-slug';
 
 const files = await ls('blog-posts/');
 // const highlighter = await createShikiHighlighter({theme: nightOwl});
@@ -76,6 +77,7 @@ async function process(file) {
 		})
 		.use(remarkToc, {tight: true, ordered: true})
 		.use(remarkRehype, {allowDangerousHtml: true})
+		.use(rehypeSlug)
 		.use(rehypeAutolinkHeadings)
 		.use(rehypeStringify, {allowDangerousHtml: true})
 		.process(content);
