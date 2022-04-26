@@ -9,10 +9,19 @@ import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import {parse} from 'yaml';
 import ejs from 'ejs';
-import {createShikiHighlighter, runTwoSlash, renderCodeToHTML} from 'shiki-twoslash';
+import {runTwoSlash, renderCodeToHTML} from 'shiki-twoslash';
+import remarkEmoji from 'remark-emoji';
 import {visit} from 'unist-util-visit';
 import nightOwl from './night-owl.js';
 import shiki from 'shiki';
+import remarkToc from 'remark-toc';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import {remarkMermaid} from 'remark-mermaidjs';
+import retextSpell from 'retext-spell';
+import retextPassive from 'retext-passive';
+import retextReadability from 'retext-readability';
+import retextSimplify from 'retext-simplify';
+import dictionary from 'dictionary-en';
 
 const files = await ls('blog-posts/');
 // const highlighter = await createShikiHighlighter({theme: nightOwl});
@@ -30,6 +39,13 @@ async function process(file) {
 	const rendered = await unified()
 		.use(remarkParse)
 		.use(remarkFrontmatter)
+		.use(remarkGfm)
+		.use(remarkEmoji)
+		.use(remarkMermaid, {theme: 'dark'})
+		.use(retextSpell, dictionary)
+		.use(retextPassive)
+		.use(retextReadability)
+		.use(retextSimplify)
 		.use(() => tree => {
 			tree.children.forEach(node => {
 				if (node.type === 'yaml') {
@@ -37,10 +53,8 @@ async function process(file) {
 				}
 			});
 		})
-		.use(remarkGfm)
 		.use(() => tree => {
 			visit(tree, 'code', node => {
-				console.log(node)
 				const code = node.value;
 				if (node.meta === 'twoslash') {
 					const twoslash = runTwoSlash(code, 'ts', {})
@@ -60,8 +74,9 @@ async function process(file) {
 				node.children = [];
 			})
 		})
+		.use(remarkToc, {tight: true, ordered: true})
 		.use(remarkRehype, {allowDangerousHtml: true})
-
+		.use(rehypeAutolinkHeadings)
 		.use(rehypeStringify, {allowDangerousHtml: true})
 		.process(content);
 

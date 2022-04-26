@@ -1,0 +1,202 @@
+
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>My new blog!</title>
+
+		<link rel='stylesheet' href='../normalize.css'>
+		<link rel='stylesheet' href='../base.css'>
+		<link rel='stylesheet' href='../shiki.css'>
+		</head>
+		<body>
+		<header> 
+		<h1>Sid's Blog</h1>
+		</header>
+		<hr class='top-divider'>
+		<h2>Table of Contents</h2>
+<ol>
+<li><a href="#better-code-blocks">Better code blocks</a></li>
+<li><a href="#todo">TODO</a>
+<ol>
+<li><a href="#yes">Yes</a>
+<ol>
+<li><a href="#its">It's</a>
+<ol>
+<li><a href="#a">A</a>
+<ol>
+<li><a href="#toc">TOC</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#more-stuff">More stuff</a></li>
+</ol>
+<h2>Better code blocks</h2>
+<p>The one feature which was the hugest headache is this:</p>
+<pre class="shiki twoslash lsp" style="background-color: #011627; color: #d6deeb"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #C792EA">const</span><span style="color: #C792EA"> </span><span style="color: #82AAFF"><data-lsp lsp='const message: "Hello world!"' >message</data-lsp></span><span style="color: #C792EA"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA"> </span><span style="color: #D9F5DD">&apos;</span><span style="color: #ECC48D">Hello world!</span><span style="color: #D9F5DD">&apos;</span><span style="color: #D6DEEB">;</span></div><div class='line'><span style="color: #C792EA">const</span><span style="color: #C792EA"> </span><span style="color: #82AAFF"><data-lsp lsp='const sum: (a: number, b: number) => number' >sum</data-lsp></span><span style="color: #C792EA"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA"> </span><span style="color: #D9F5DD">(</span><span style="color: #D7DBE0"><data-lsp lsp='(parameter) a: number' >a</data-lsp></span><span style="color: #7FDBCA">:</span><span style="color: #C792EA"> </span><span style="color: #C5E478">number</span><span style="color: #C792EA">,</span><span style="color: #C792EA"> </span><span style="color: #D7DBE0"><data-lsp lsp='(parameter) b: number' >b</data-lsp></span><span style="color: #7FDBCA">:</span><span style="color: #C792EA"> </span><span style="color: #C5E478">number</span><span style="color: #D9F5DD">)</span><span style="color: #C792EA"> </span><span style="color: #C792EA">=&gt;</span><span style="color: #C792EA"> </span><span style="color: #D6DEEB"><data-lsp lsp='(parameter) a: number' >a</data-lsp></span><span style="color: #C792EA"> </span><span style="color: #C792EA">+</span><span style="color: #C792EA"> </span><span style="color: #D6DEEB"><data-lsp lsp='(parameter) b: number' >b</data-lsp></span><span style="color: #D6DEEB">;</span></div><div class='line'><span style="color: #D6DEEB"><data-lsp lsp='var console: Console' >console</data-lsp></span><span style="color: #C792EA">.</span><span style="color: #82AAFF"><data-lsp lsp='(method) Console.log(...data: any[]): void' >log</data-lsp></span><span style="color: #D6DEEB">(</span><span style="color: #82AAFF"><data-lsp lsp='const sum: (a: number, b: number) => number' >sum</data-lsp></span><span style="color: #D6DEEB">(</span><span style="color: #F78C6C">1</span><span style="color: #D6DEEB">, <data-err><data-lsp lsp='const message: "Hello world!"' >message</data-lsp></data-err>));</span></div><span class="error"><span>Argument of type 'string' is not assignable to parameter of type 'number'.</span><span class="code">2345</span></span><span class="error-behind">Argument of type 'string' is not assignable to parameter of type 'number'.</span></code></div></pre>
+<p>🤯</p>
+<p>This is achieved by a little tool called Twoslash, used in the TypeScript
+website itself. You can do more cool stuff:</p>
+<pre class="shiki twoslash lsp" style="background-color: #011627; color: #d6deeb"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #C792EA">const</span><span style="color: #C792EA"> </span><span style="color: #82AAFF"><data-lsp lsp='const a: Person' >a</data-lsp></span><span style="color: #7FDBCA">:</span><span style="color: #C792EA"> </span><span style="color: #FFCB8B"><data-lsp lsp='interface Person' >Person</data-lsp></span><span style="color: #C792EA"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA"> </span><span style="color: #C792EA">{</span></div><div class='line'><span style="color: #C792EA">	<data-lsp lsp='(property) Person.name: string' >name</data-lsp></span><span style="color: #C792EA">:</span><span style="color: #C792EA"> </span><span style="color: #D9F5DD">&apos;</span><span style="color: #ECC48D">John</span><span style="color: #D9F5DD">&apos;</span><span style="color: #C792EA">,</span></div><div class='line'><span style="color: #C792EA">	<data-lsp lsp='(property) Person.age: number' >age</data-lsp></span><span style="color: #C792EA">:</span><span style="color: #C792EA"> </span><span style="color: #F78C6C">42</span><span style="color: #C792EA">,</span></div><div class='line'><span style="color: #C792EA">}</span><span style="color: #D6DEEB">;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #D6DEEB"><data-lsp lsp='var console: Console' >console</data-lsp></span><span style="color: #C792EA">.</span><span style="color: #82AAFF"><data-lsp lsp='(method) Console.log(...data: any[]): void' >log</data-lsp></span><span style="color: #D6DEEB">(<data-lsp lsp='const a: Person' >a</data-lsp></span><span style="color: #C792EA">.</span><span style="color: #BAEBE2"><data-lsp lsp='any' >n</data-lsp></span></div><div class='meta-line'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='inline-completions'><ul class='dropdown'><li class=''><span><span class='result-found'>n</span>ame<span></li></ul></span></div><div class='line'>&nbsp;</div></code></div></pre>
+<p>You can see 2 things here:</p>
+<ol>
+<li>The Person interface is hidden</li>
+<li>The compiler gives you autocomplete!</li>
+</ol>
+<pre class="shiki twoslash lsp" style="background-color: #011627; color: #d6deeb"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #C792EA">import</span><span style="color: #D6DEEB"> <data-lsp lsp='(alias) function express(): core.Express&#10;(alias) namespace express&#10;import express' >express</data-lsp> </span><span style="color: #C792EA">from</span><span style="color: #D6DEEB"> </span><span style="color: #D9F5DD">"</span><span style="color: #ECC48D">express</span><span style="color: #D9F5DD">"</span></div><div class='line'><span style="color: #C792EA">const</span><span style="color: #C792EA"> </span><span style="color: #82AAFF"><data-lsp lsp='const app: Express' >app</data-lsp></span><span style="color: #C792EA"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA"> </span><span style="color: #82AAFF"><data-lsp lsp='(alias) express(): Express&#10;import express' >express</data-lsp></span><span style="color: #D6DEEB">()</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #D6DEEB"><data-lsp lsp='const app: Express' >app</data-lsp></span><span style="color: #C792EA">.</span><span style="color: #82AAFF"><data-lsp lsp='(property) Application&lt;Record&lt;string, any>>.get: &lt;"/", {}, any, any, QueryString.ParsedQs, Record&lt;string, any>>(path: "/", ...handlers: RequestHandler&lt;{}, any, any, QueryString.ParsedQs, Record&lt;string, any>>[]) => Express (+5 overloads)' >get</data-lsp></span><span style="color: #D6DEEB">(</span><span style="color: #D9F5DD">"</span><span style="color: #ECC48D">/</span><span style="color: #D9F5DD">"</span><span style="color: #D6DEEB">, </span><span style="color: #D9F5DD">(</span><span style="color: #D7DBE0"><data-lsp lsp='(parameter) req: Request&lt;{}, any, any, QueryString.ParsedQs, Record&lt;string, any>>' >req</data-lsp></span><span style="color: #D6DEEB">, </span><span style="color: #D7DBE0"><data-lsp lsp='(parameter) res: Response&lt;any, Record&lt;string, any>, number>' >res</data-lsp></span><span style="color: #D9F5DD">)</span><span style="color: #D6DEEB"> </span><span style="color: #C792EA">=&gt;</span><span style="color: #D6DEEB"> {</span></div><div class='line'><span style="color: #D6DEEB">  <data-lsp lsp='(parameter) res: Response&lt;any, Record&lt;string, any>, number>' >res</data-lsp></span><span style="color: #C792EA">.</span><span style="color: #BAEBE2"><data-lsp lsp='any' >sen</data-lsp></span></div><div class='meta-line'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='inline-completions'><ul class='dropdown'><li class=''><span><span class='result-found'>sen</span>d<span></li><li class=''><span><span class='result-found'>sen</span>dDate<span></li><li class='deprecated'><span><span class='result-found'>sen</span>dfile<span></li><li class=''><span><span class='result-found'>sen</span>dFile<span></li><li class=''><span><span class='result-found'>sen</span>dStatus<span></li></ul></span></div><div class='line'><span style="color: #D6DEEB">})</span></div><div class='line'>&nbsp;</div><div class='line'>&nbsp;</div><div class='line'>&nbsp;</div><div class='line'><span style="color: #D6DEEB"><data-lsp lsp='const app: Express' >app</data-lsp></span><span style="color: #C792EA">.</span><span style="color: #82AAFF"><data-lsp lsp='(method) Application&lt;Record&lt;string, any>>.listen(port: number, callback?: (() => void) | undefined): Server (+5 overloads)' >listen</data-lsp></span><span style="color: #D6DEEB">(</span><span style="color: #F78C6C">3000</span><span style="color: #D6DEEB">)</span></div></code></div></pre>
+<p>Simply install the devdependency <code>@types/express</code> and you can see the
+autocomplete for the <code>res.send</code> method!</p>
+<p>Another thing I setup is that you can embed code, like MDX:</p>
+<script>
+let counter = 1;
+function increment() {
+	counter++;
+	document.querySelector('p.inc').innerHTML = `The number is ${counter}`;
+}
+</script>
+<p><button onclick='increment()'>Click me</button></p>
+<p class='inc'>The number is 1</p>
+<pre class="shiki" style="background-color: #011627"><code><span class="line"><span style="color: #7FDBCA">&lt;</span><span style="color: #CAECE6">script</span><span style="color: #7FDBCA">&gt;</span></span>
+<span class="line"><span style="color: #C792EA">let</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #D7DBE0">counter</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #C792EA">=</span><span style="color: #C792EA; font-style: italic"> </span><span style="color: #F78C6C">1</span><span style="color: #D6DEEB">;</span></span>
+<span class="line"><span style="color: #C792EA">function</span><span style="color: #D6DEEB"> </span><span style="color: #82AAFF; font-style: italic">increment</span><span style="color: #D9F5DD">()</span><span style="color: #D6DEEB"> {</span></span>
+<span class="line"><span style="color: #D6DEEB">	</span><span style="color: #D7DBE0">counter</span><span style="color: #C792EA">++</span><span style="color: #D6DEEB">;</span></span>
+<span class="line"><span style="color: #D6DEEB">	</span><span style="color: #7FDBCA; font-style: italic">document</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #82AAFF; font-style: italic">querySelector</span><span style="color: #D6DEEB">(</span><span style="color: #D9F5DD">&#39;</span><span style="color: #ECC48D">p.inc</span><span style="color: #D9F5DD">&#39;</span><span style="color: #D6DEEB">)</span><span style="color: #C792EA; font-style: italic">.</span><span style="color: #BAEBE2">innerHTML</span><span style="color: #D6DEEB"> </span><span style="color: #C792EA">=</span><span style="color: #D6DEEB"> </span><span style="color: #D6DEEB">`</span><span style="color: #ECC48D">The number is </span><span style="color: #D3423E">${</span><span style="color: #D7DBE0">counter</span><span style="color: #D3423E">}</span><span style="color: #D6DEEB">`</span><span style="color: #D6DEEB">;</span></span>
+<span class="line"><span style="color: #D6DEEB">}</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;/</span><span style="color: #CAECE6">script</span><span style="color: #7FDBCA">&gt;</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span><span style="color: #CAECE6">button</span><span style="color: #7FDBCA"> </span><span style="color: #C5E478; font-style: italic">onclick</span><span style="color: #7FDBCA">=</span><span style="color: #D9F5DD">&#39;</span><span style="color: #82AAFF; font-style: italic">increment</span><span style="color: #D6DEEB">()</span><span style="color: #D9F5DD">&#39;</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB">Click me</span><span style="color: #7FDBCA">&lt;/</span><span style="color: #CAECE6">button</span><span style="color: #7FDBCA">&gt;</span></span>
+<span class="line"><span style="color: #7FDBCA">&lt;</span><span style="color: #CAECE6">p</span><span style="color: #7FDBCA"> </span><span style="color: #C5E478; font-style: italic">class</span><span style="color: #7FDBCA">=</span><span style="color: #D9F5DD">&#39;</span><span style="color: #ECC48D">inc</span><span style="color: #D9F5DD">&#39;</span><span style="color: #7FDBCA">&gt;</span><span style="color: #D6DEEB">The number is 1</span><span style="color: #7FDBCA">&lt;/</span><span style="color: #CAECE6">p</span><span style="color: #7FDBCA">&gt;</span></span></code></pre>
+<p>Not quite MDX, but I rarely use frameworks in blog posts, so ¯\_(ツ)_/¯</p>
+<p>And if you're curious, the beautiful highlight comes from
+<a href="https://shiki.matsu.io/">Shiki</a>. It uses TextMate grammars used by most IDEs to
+get the syntax <em>just</em> right!</p>
+<h2>TODO<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup></h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Analytics</li>
+<li class="task-list-item"><input type="checkbox" disabled> Fix the tag links in the homepage</li>
+<li class="task-list-item"><input type="checkbox" disabled> Comments!</li>
+<li class="task-list-item"><input type="checkbox" disabled> SEO</li>
+<li class="task-list-item"><input type="checkbox" disabled> Drafts? (Then I would have to make this closed source :( )</li>
+</ul>
+<h3>Yes</h3>
+<h4>It's</h4>
+<h5>A</h5>
+<h6>TOC</h6>
+<h2>More stuff</h2>
+<p>While we're at it, let's try some more stuff:</p>
+<p><svg xmlns:xlink="http://www.w3.org/1999/xlink" height="233" fill="#ccc" font-family="&#x22;trebuchet ms&#x22;,verdana,arial,sans-serif" font-size="16px" style="max-width:124.640625px" viewBox="0 0 124.641 233">
+  <defs>
+    <path id="b" fill="#d3d3d3" stroke-dasharray="1 0" d="m0 0 10 5-10 5z"></path>
+  </defs>
+  <g opacity="1">
+    <path fill="none" stroke="#d3d3d3" stroke-width="2px" marker-end="url(#a)" d="m47.473 44.015-4.157 4.664c-4.157 4.664-12.47 13.993-16.628 22.823-4.157 8.831-4.157 17.165-4.157 21.331V97"></path>
+    <defs>
+      <marker id="a" markerHeight="6" markerUnits="strokeWidth" markerWidth="8" orient="auto" refX="9" refY="5" viewBox="0 0 10 10">
+        <use xlink:href="#b" stroke-dasharray="1 0"></use>
+      </marker>
+    </defs>
+  </g>
+  <g opacity="1">
+    <path fill="none" stroke="#d3d3d3" stroke-width="2px" marker-end="url(#c)" d="m76.91 44.015 4.157 4.664c4.157 4.664 12.47 13.993 16.628 22.823 4.157 8.831 4.157 17.165 4.157 21.331V97"></path>
+    <defs>
+      <marker id="c" markerHeight="6" markerUnits="strokeWidth" markerWidth="8" orient="auto" refX="9" refY="5" viewBox="0 0 10 10">
+        <use xlink:href="#b" stroke-dasharray="1 0"></use>
+      </marker>
+    </defs>
+  </g>
+  <g opacity="1">
+    <path fill="none" stroke="#d3d3d3" stroke-width="2px" marker-end="url(#d)" d="M22.531 136v4.167c0 4.166 0 12.5 4.126 21.295 4.126 8.796 12.377 18.054 16.503 22.684l4.125 4.629"></path>
+    <defs>
+      <marker id="d" markerHeight="6" markerUnits="strokeWidth" markerWidth="8" orient="auto" refX="9" refY="5" viewBox="0 0 10 10">
+        <use xlink:href="#b" stroke-dasharray="1 0"></use>
+      </marker>
+    </defs>
+  </g>
+  <g opacity="1">
+    <path fill="none" stroke="#d3d3d3" stroke-width="2px" marker-end="url(#e)" d="M101.852 136v4.167c0 4.166 0 12.5-4.126 21.295-4.126 8.796-12.377 18.054-16.503 22.684l-4.125 4.629"></path>
+    <defs>
+      <marker id="e" markerHeight="6" markerUnits="strokeWidth" markerWidth="8" orient="auto" refX="9" refY="5" viewBox="0 0 10 10">
+        <use xlink:href="#b" stroke-dasharray="1 0"></use>
+      </marker>
+    </defs>
+  </g>
+  <foreignObject width="0" height="0" color="#ccc" style="background-color:#585858;text-align:center">
+    <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+      <span fill="#ccc" color="#ccc" style="background-color:#585858;text-align:center">
+    </span></div>
+  </foreignObject>
+  <foreignObject width="0" height="0" color="#ccc" style="background-color:#585858;text-align:center">
+    <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+      <span fill="#ccc" color="#ccc" style="background-color:#585858;text-align:center">
+    </span></div>
+  </foreignObject>
+  <foreignObject width="0" height="0" color="#ccc" style="background-color:#585858;text-align:center">
+    <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+      <span fill="#ccc" color="#ccc" style="background-color:#585858;text-align:center">
+    </span></div>
+  </foreignObject>
+  <foreignObject width="0" height="0" color="#ccc" style="background-color:#585858;text-align:center">
+    <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+      <span fill="#ccc" color="#ccc" style="background-color:#585858;text-align:center">
+    </span></div>
+  </foreignObject>
+  <g opacity="1" transform="translate(62.191 27.5)">
+    <rect width="29.438" height="39" x="-14.719" y="-19.5" fill="#1f2020" stroke="#81b1db" stroke-width="1px" rx="0" ry="0"></rect>
+    <foreignObject width="9.438" height="19" transform="translate(-4.719 -9.5)" color="#ccc" style="text-align:center">
+      <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+        A
+      </div>
+    </foreignObject>
+  </g>
+  <g opacity="1" transform="translate(22.531 116.5)">
+    <rect width="29.063" height="39" x="-14.531" y="-19.5" fill="#1f2020" stroke="#81b1db" stroke-width="1px" rx="0" ry="0"></rect>
+    <foreignObject width="9.063" height="19" transform="translate(-4.531 -9.5)" color="#ccc" style="text-align:center">
+      <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+        B
+      </div>
+    </foreignObject>
+  </g>
+  <g opacity="1" transform="translate(101.852 116.5)">
+    <rect width="29.578" height="39" x="-14.789" y="-19.5" fill="#1f2020" stroke="#81b1db" stroke-width="1px" rx="0" ry="0"></rect>
+    <foreignObject width="9.578" height="19" transform="translate(-4.79 -9.5)" color="#ccc" style="text-align:center">
+      <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+        C
+      </div>
+    </foreignObject>
+  </g>
+  <g opacity="1" transform="translate(62.191 205.5)">
+    <rect width="29.813" height="39" x="-14.906" y="-19.5" fill="#1f2020" stroke="#81b1db" stroke-width="1px" rx="0" ry="0"></rect>
+    <foreignObject width="9.813" height="19" transform="translate(-4.906 -9.5)" color="#ccc" style="text-align:center">
+      <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+        D
+      </div>
+    </foreignObject>
+  </g>
+</svg>
+</p>
+<p><svg fill="#ccc" font-family="&#x22;trebuchet ms&#x22;,verdana,arial,sans-serif" font-size="16px"></svg>
+</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">It took me 2 hours to successfully build a blog MVP with Node.js but it took me days to fail to build a blog MVP with frameworks.<br><br>Guess I am a backend guy after all</p>&mdash; Siddharth Shyniben (@SiddharthShyn) <a href="https://twitter.com/SiddharthShyn/status/1518796282533658624?ref_src=twsrc%5Etfw">April 26, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<section data-footnotes class="footnotes"><h2 id="footnote-label" class="sr-only"><a aria-hidden="true" tabindex="-1" href="#footnote-label"><span class="icon icon-link"></span></a>Footnotes</h2>
+<ol>
+<li id="user-content-fn-1">
+<p><small>Yes, I just showed off GFM Task lists. And footnotes</small> <a href="#user-content-fnref-1" data-footnote-backref class="data-footnote-backref" aria-label="Back to content">↩</a></p>
+</li>
+</ol>
+</section>
+
+		<hr class='top-divider'>
+		<footer>
+		<p>&copy; 2022 <a
+		href='https://siddu.tech'>Sid</a>. All blog post writing is licensed
+		<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC
+		BY-SA 4.0</a>. All source code is released to the public domain</p>
+		</footer>
+		</body>
+		</html>
+		

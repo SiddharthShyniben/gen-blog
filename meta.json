@@ -1,36 +1,12 @@
 {
 	"posts": [
 		{
-			"title": "Let's debug a node.js app using the built-in debugger.",
+			"title": "My new blog!",
 			"tags": [
-				"node",
-				"tip"
+				"showcase"
 			],
-			"dev-tags": [
-				"node",
-				"javascript",
-				"tutorial",
-				"beginners"
-			],
-			"hashnode-tags": [
-				"JavaScript",
-				"Node.js",
-				"Tutorial",
-				"Beginner Developers"
-			],
-			"slug": "debug-nodejs",
-			"cta": "Did you know you can debug node.js apps without any external tools, just with the node CLI? Yes!",
-			"cover": "img/debugging.png",
-			"date": 1650844800000
-		},
-		{
-			"title": "Shiki test",
-			"slug": "test",
-			"cta": "test",
-			"date": 1640995200000,
-			"tags": [
-				"test"
-			]
+			"slug": "welcome",
+			"date": 1650945299559
 		}
 	]
 }
