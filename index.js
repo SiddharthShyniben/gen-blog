@@ -28,9 +28,9 @@ const files = await ls('blog-posts/');
 // const highlighter = await createShikiHighlighter({theme: nightOwl});
 const highlighter = await shiki.getHighlighter({theme: nightOwl});
 
-Promise
-	.all(files.map(process))
-	.then(files => writeMetaData(files.map(write)));
+const processed = await Promise.all(files.map(process));
+const posts = await Promise.all(processed.map(write));
+writeMetaData(posts);
 
 async function process(file) {
 	const content = readFileSync(file, 'utf-8');
@@ -92,47 +92,22 @@ async function process(file) {
 	return {
 		slug,
 		content: String(rendered),
-		frontmatter
+		frontmatter,
+		tags: frontmatter.tags
 	};
 }
 
 rmSync('out', {recursive: true, force: true})
 mkdirSync('out')
-function write(data) {
+async function write(data) {
 	const {slug, content, frontmatter} = data;
 	try {
 		mkdirSync(`./public/${slug}`);
 	} catch {}
 
-	writeFileSync(`./public/${slug}/index.html`, ejs.render(`
-		<!DOCTYPE html>
-		<html lang="en">
-		<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>${frontmatter?.title}</title>
+	const out = await ejs.renderFile('source/post.ejs', {title: frontmatter?.title, content});
 
-		<link rel='stylesheet' href='../normalize.css'>
-		<link rel='stylesheet' href='../base.css'>
-		<link rel='stylesheet' href='../shiki.css'>
-		</head>
-		<body>
-		<header> ${/*TODO include?*/''}
-		<h1>Sid's Blog</h1>
-		</header>
-		<hr class='top-divider'>
-		${content}
-
-		<hr class='top-divider'>
-		<footer>
-		<p>&copy; <%= new Date().getFullYear() %> <a
-		href='https://siddu.tech'>Sid</a>. All blog post writing is licensed
-		<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC
-		BY-SA 4.0</a>. All source code is released to the public domain</p>
-		</footer>
-		</body>
-		</html>
-		`));
+	writeFileSync(`./public/${slug}/index.html`, out);
 	return frontmatter;
 }
 

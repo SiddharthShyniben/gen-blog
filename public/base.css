@@ -92,7 +92,9 @@ footer {
 
 @media screen and (max-width: 768px) {
 	body {
-		width: 90vw;
+		width: calc(90vw - 3em);
+		margin: 0;
+		margin-left: 20px;
 	}
 
 	.post {
@@ -155,4 +157,32 @@ footer {
 	border-top-right-radius: 40px;
 	border-bottom-right-radius: 40px;
 	right: -6px
+}
+
+.buttons {
+	margin-top: 3em;
+}
+
+.buttons button {
+	/* button reset */
+	background: none;
+	border: none;
+	margin: 0;
+
+	width: 1.5em;
+	height: 1.5em;
+
+	margin-right: 0.75em;
+}
+
+.buttons .button svg {
+	color: #2563eb;
+}
+
+.buttons button:hover {
+	filter: brightness(0.8);
+}
+
+.buttons button:focus .feather-heart path {
+	fill: #2563eb;
 }

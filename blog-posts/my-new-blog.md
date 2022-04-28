@@ -133,17 +133,4 @@ graph TD;
 	C-->D;
 ```
 
-```mermaid
-gitGraph
-	commit
-	commit
-	branch develop
-	checkout develop
-	commit
-	commit
-	checkout main
-	merge develop
-	commit
-	commit
-```
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It took me 2 hours to successfully build a blog MVP with Node.js but it took me days to fail to build a blog MVP with frameworks.<br><br>Guess I am a backend guy after all</p>&mdash; Siddharth Shyniben (@SiddharthShyn) <a href="https://twitter.com/SiddharthShyn/status/1518796282533658624?ref_src=twsrc%5Etfw">April 26, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

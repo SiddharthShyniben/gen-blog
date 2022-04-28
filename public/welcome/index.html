@@ -1,7 +1,7 @@
 
-		<!DOCTYPE html>
-		<html lang="en">
-		<head>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>My new blog!</title>
@@ -9,10 +9,10 @@
 		<link rel='stylesheet' href='../normalize.css'>
 		<link rel='stylesheet' href='../base.css'>
 		<link rel='stylesheet' href='../shiki.css'>
-		</head>
-		<body>
-		<header> 
-		<h1>Sid's Blog</h1>
+	</head>
+	<body>
+		<header>
+			<h1>Sid's Blog</h1>
 		</header>
 		<hr class='top-divider'>
 		<h2 id="table-of-contents"><a aria-hidden="true" tabindex="-1" href="#table-of-contents"><span class="icon icon-link"></span></a>Table of Contents</h2>
@@ -179,8 +179,6 @@ get the syntax <em>just</em> right!</p>
   </g>
 </svg>
 </p>
-<p><svg fill="#ccc" font-family="&#x22;trebuchet ms&#x22;,verdana,arial,sans-serif" font-size="16px"></svg>
-</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">It took me 2 hours to successfully build a blog MVP with Node.js but it took me days to fail to build a blog MVP with frameworks.<br><br>Guess I am a backend guy after all</p>&mdash; Siddharth Shyniben (@SiddharthShyn) <a href="https://twitter.com/SiddharthShyn/status/1518796282533658624?ref_src=twsrc%5Etfw">April 26, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <section data-footnotes class="footnotes"><h2 id="footnote-label" class="sr-only"><a aria-hidden="true" tabindex="-1" href="#footnote-label"><span class="icon icon-link"></span></a>Footnotes</h2>
 <ol>
@@ -190,13 +188,33 @@ get the syntax <em>just</em> right!</p>
 </ol>
 </section>
 
+		<div class='buttons'>
+			<button class='button'>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+					<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+				</svg>
+			</button>
+			<button class='button share'>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share">
+					<path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+					<polyline points="16 6 12 2 8 6"></polyline>
+					<line x1="12" y1="2" x2="12" y2="15"></line>
+				</svg>
+			</button>
+		</div>
 		<hr class='top-divider'>
+
 		<footer>
-		<p>&copy; 2022 <a
-		href='https://siddu.tech'>Sid</a>. All blog post writing is licensed
-		<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC
-		BY-SA 4.0</a>. All source code is released to the public domain</p>
+			<p>
+				&copy; 2022 <a href='https://siddu.tech'>Sid</a>. All content is licensed
+				<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC BY-SA 4.0</a>.
+			</p>
 		</footer>
-		</body>
-		</html>
-		
+
+		<script>
+			document.querySelector('button.share').addEventListener('click', function () {
+				window.open(`https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20blog%20post%20by%20Sid!&url=${window.location}`);
+			})
+		</script>
+	</body>
+</html>
