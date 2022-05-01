@@ -1,12 +1,5 @@
 {
 	"posts": [
-		{
-			"title": "My new blog!",
-			"tags": [
-				"showcase"
-			],
-			"slug": "welcome",
-			"date": 1651140130191
-		}
+		{}
 	]
 }

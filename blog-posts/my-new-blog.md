@@ -2,6 +2,9 @@
 title: My new blog!
 tags: [showcase]
 slug: welcome
+cover: https://picsum.photos/1600/900
+cta: The integrated blogging experience
+date: 2022-04-28
 ---
 
 ## Table of Contents
@@ -22,6 +25,7 @@ The one feature which was the hugest headache is this:
 ```typescript twoslash
 // @errors: 2345
 const message = 'Hello world!';
+//    ^?
 const sum = (a: number, b: number) => a + b;
 console.log(sum(1, message));
 ```
@@ -30,6 +34,32 @@ console.log(sum(1, message));
 
 This is achieved by a little tool called Twoslash, used in the TypeScript
 website itself. You can do more cool stuff:
+
+```typescript twoslash
+// Hello
+console.error("This is an error")
+// @error: This is an error
+console.log("This is a log")
+// @log: This is a log
+console.warn("This is a warning")
+// @warn: This is a warning
+```
+
+```typescript twoslash
+// @noErrors
+useless.code();
+more.useless.code();
+some.more();
+const date = new Date();
+//           ^^^^^^^^^^
+console.log(date)
+```
+
+<br><br>
+```typescript twoslash
+// @annotate: right - Creates date. Some more blah blah to stress test this
+const date = new Date();
+```
 
 ```typescript twoslash
 interface Person {

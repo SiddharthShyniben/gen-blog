@@ -15,13 +15,14 @@
 			<h1>Sid's Blog</h1>
 		</header>
 		<hr class='top-divider'>
-		<%- content %>
+		<div class='main'>
+			<%- content %>
+		</div>
 
 		<div class='buttons'>
+			<div class='likes'>0</div>
 			<button class='button'>
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
-					<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-				</svg>
+				<div class='heart'></div>
 			</button>
 			<button class='button share'>
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share">
@@ -44,6 +45,21 @@
 			document.querySelector('button.share').addEventListener('click', function () {
 				window.open(`https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20blog%20post%20by%20Sid!&url=${window.location}`);
 			})
+			document.querySelector('.heart').addEventListener('click', function () {
+			   this.classList.toggle('active');
+			   like();
+			})
+
+			function like() {
+				fetch('https://gen-be-production.up.railway.app/like?id=' +
+				   encodeURIComponent(window.location.href), {method: 'POST'})
+			}
+
+			async function updateLikes() {
+				const likes = await fetch('https://gen-be-production.up.railway.app/like?id=' +
+				   encodeURIComponent(window.location.href)).then(res => res.json());
+				document.querySelector('.likes').innerText = likes.likes;
+			}
 		</script>
 	</body>
 </html>

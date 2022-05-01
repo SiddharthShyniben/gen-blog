@@ -7,58 +7,79 @@
 
 		<link rel='stylesheet' href='normalize.css'>
 		<link rel='stylesheet' href='base.css'>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<header>
-			<h1>Sid's Blog</h1>
+			<h1>IDE</h1>
 		</header>
-		<hr class='top-divider'>
-		<% const sortedPosts = posts.sort((a, b) => a.date - b.date); %>
+		<% const sortedPosts = posts.sort((a, b) => b.date - a.date); %>
 
-		<% if (sortedPosts[0]) { %>
-			<div class='post top'>
-				<% if (sortedPosts[0].cover) { %>
-					<img src='<%= sortedPosts[0].cover %>' alt='<%= sortedPosts[0].title %>' class='cover'>
-				<% } %>
-				<h2>
-					<a href='/<%= sortedPosts[0].slug %>'>
-						<%= sortedPosts[0].title %>
-					</a>
-				</h2>
-				<% if (sortedPosts[0].cta) { %>
-					<p class='cta'><%= sortedPosts[0].cta %></p>
-				<% } %>
-				<p><%- sortedPosts[0].tags.map(a => `<a class='tag' href='/tag/${a}'>${a}</a>`).join('') %></p>
-			</div>
-		<% } %>
-
-		<hr class='top-divider'>
-
-		<div class='two-column'>
-			<% sortedPosts.slice(1).forEach(post => { %>
+		<div class='columns'>
+			<% for (const post of sortedPosts.slice(0, 4)) { %>
 				<div class='post'>
-					<% if (post.cover) { %>
-						<img src='<%= post.cover %>' alt='<%= post.title %>' class='cover'>
-					<% } %>
-					<h2>
-						<a href='/<%= post.slug %>'>
-							<%= post.title %>
-						</a>
-					</h2>
-					<% if (post.cta) { %>
-						<p class='cta'><%= post.cta %></p>
-					<% } %>
-					<p><%- post.tags.map(a => `<a class='tag' href='/tag/${a}'>${a}</a>`).join('') %></p>
+					<img src='<%= post.cover %>' alt='<%= post.title %>' class='cover'>
+					<div class='meta'>
+						<h2><a href='/<%= post.slug %>'><%= post.title %></a></h2>
+						<p><%= post.cta %></p>
+						<p>Published on <span class='date'>
+							<%= new Date(post.date).toLocaleString(undefined, {
+								year: 'numeric',
+								weekday: 'long',
+								month: 'long',
+								day: 'numeric',
+							}) %>
+						</span></p>
+					</div>
 				</div>
-			<% }); %>
+			<% } %>
 		</div>
 
-		<hr class='top-divider'>
+		<div class='section'>
+			<div class='subscribe'>
+				<h2>Subscribe to my newsletter!</h2>
+				<p>The latest updates from my blog, straight to your inbox. <br> 
+					Plus extra goodies you won't get from this blog 👀</p>
+				<div class='subs'>
+					<input class='sub' type='email' placeholder='smart@guy.com'>
+					<button class='sub' type='submit'>Subscribe</button>
+				</div>
+			</div>
+			<div class='subscribe'>
+				<h2>Follow me on Twitter</h2>
+				<p>Don't like long form content?<br> Get byte sized updates on my
+					Twitter <a
+						href='https://twitter.com/SiddharthShyn'>@SiddharthShyn</a></p>
+			</div>
+		</div>
+
+		<div class='columns'>
+			<% for (const post of sortedPosts.slice(4)) { %>
+			<div class='post'>
+				<img src='<%= post.cover %>' alt='<%= post.title %>' class='cover'>
+				<div class='meta'>
+					<h2><a href='/<%= post.slug %>'><%= post.title %></a></h2>
+					<p><%= post.cta %></p>
+					<p>Published on <span class='date'>
+							<%= new Date(post.date).toLocaleString(undefined, {
+							year: 'numeric',
+							weekday: 'long',
+							month: 'long',
+							day: 'numeric',
+							}) %>
+						</span></p>
+				</div>
+			</div>
+			<% } %>
+		</div>
+
 		<footer>
 			<p>&copy; <%= new Date().getFullYear() %> <a
 					href='https://siddu.tech'>Sid</a>. All blog post writing is licensed
 				<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC
-					BY-SA 4.0</a>. All source code is released to the public domain</p>
+					BY-SA 4.0</a></p>
 		</footer>
 	</body>
 </html>

@@ -7,39 +7,102 @@
 
 		<link rel='stylesheet' href='normalize.css'>
 		<link rel='stylesheet' href='base.css'>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<header>
-			<h1>Sid's Blog</h1>
+			<h1>IDE</h1>
 		</header>
-		<hr class='top-divider'>
 		
 
-		
-			<div class='post top'>
-				
-				<h2>
-					<a href='/welcome'>
-						My new blog!
-					</a>
-				</h2>
-				
-				<p><a class='tag' href='/tag/showcase'>showcase</a></p>
-			</div>
-		
-
-		<hr class='top-divider'>
-
-		<div class='two-column'>
+		<div class='columns'>
+			
+				<div class='post'>
+					<img src='https://picsum.photos/1600/900' alt='My new blog!' class='cover'>
+					<div class='meta'>
+						<h2><a href='/welcome'>My new blog!</a></h2>
+						<p>The integrated blogging experience</p>
+						<p>Published on <span class='date'>
+							Thursday, April 28, 2022
+						</span></p>
+					</div>
+				</div>
+			
+				<div class='post'>
+					<img src='https://picsum.photos/1600/900' alt='My new blog 4!' class='cover'>
+					<div class='meta'>
+						<h2><a href='/welcome-4'>My new blog 4!</a></h2>
+						<p>The integrated blogging experience</p>
+						<p>Published on <span class='date'>
+							Monday, March 28, 2022
+						</span></p>
+					</div>
+				</div>
+			
+				<div class='post'>
+					<img src='https://picsum.photos/1600/900' alt='My new blog 5!' class='cover'>
+					<div class='meta'>
+						<h2><a href='/welcome-5'>My new blog 5!</a></h2>
+						<p>The integrated blogging experience</p>
+						<p>Published on <span class='date'>
+							Saturday, January 1, 2022
+						</span></p>
+					</div>
+				</div>
+			
+				<div class='post'>
+					<img src='https://picsum.photos/1600/900' alt='My new blog 2!' class='cover'>
+					<div class='meta'>
+						<h2><a href='/welcome-2'>My new blog 2!</a></h2>
+						<p>The integrated blogging experience</p>
+						<p>Published on <span class='date'>
+							Wednesday, January 1, 2020
+						</span></p>
+					</div>
+				</div>
 			
 		</div>
 
-		<hr class='top-divider'>
+		<div class='section'>
+			<div class='subscribe'>
+				<h2>Subscribe to my newsletter!</h2>
+				<p>The latest updates from my blog, straight to your inbox. <br> 
+					Plus extra goodies you won't get from this blog 👀</p>
+				<div class='subs'>
+					<input class='sub' type='email' placeholder='smart@guy.com'>
+					<button class='sub' type='submit'>Subscribe</button>
+				</div>
+			</div>
+			<div class='subscribe'>
+				<h2>Follow me on Twitter</h2>
+				<p>Don't like long form content?<br> Get byte sized updates on my
+					Twitter <a
+						href='https://twitter.com/SiddharthShyn'>@SiddharthShyn</a></p>
+			</div>
+		</div>
+
+		<div class='columns'>
+			
+			<div class='post'>
+				<img src='https://picsum.photos/1600/900' alt='My new blog 3!' class='cover'>
+				<div class='meta'>
+					<h2><a href='/welcome-3'>My new blog 3!</a></h2>
+					<p>The integrated blogging experience, lol this getting old</p>
+					<p>Published on <span class='date'>
+							Sunday, January 28, 2018
+						</span></p>
+				</div>
+			</div>
+			
+		</div>
+
 		<footer>
 			<p>&copy; 2022 <a
 					href='https://siddu.tech'>Sid</a>. All blog post writing is licensed
 				<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC
-					BY-SA 4.0</a>. All source code is released to the public domain</p>
+					BY-SA 4.0</a></p>
 		</footer>
 	</body>
 </html>
