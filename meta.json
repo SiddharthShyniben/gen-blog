@@ -1,5 +1,14 @@
 {
 	"posts": [
-		{}
+		{
+			"title": "My new blog!",
+			"tags": [
+				"showcase"
+			],
+			"slug": "welcome",
+			"cover": "https://picsum.photos/1600/900",
+			"cta": "The integrated blogging experience",
+			"date": 1651104000000
+		}
 	]
 }

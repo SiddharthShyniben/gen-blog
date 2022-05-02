@@ -53,7 +53,7 @@ const posts = [];
 
 console.log(' ' + arrow(1) + ' Writing posts');
 for (const post of processed) {
-	posts.push(write(post));
+	posts.push(await write(post));
 }
 console.log(' ' + arrow(1) + ' Wrote', posts.length, 'posts');
 writeMetaData(posts);
@@ -95,7 +95,7 @@ async function process(file) {
 				}
 			});
 		})
-		.use(log('Extracted frontmatter'))
+		.use(log('Extracted frontmatter ' + JSON.stringify(frontmatter)))
 		.use(() => tree => {
 			visit(tree, 'code', node => {
 				const code = node.value;
