@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<header>
-			<h1>IDE</h1>
+			<h1><a href='/'>IDE</a></h1>
 		</header>
 		<% const sortedPosts = posts.sort((a, b) => b.date - a.date); %>
 
@@ -37,41 +37,33 @@
 			<% } %>
 		</div>
 
-		<div class='section'>
-			<div class='subscribe'>
-				<h2>Subscribe to my newsletter!</h2>
-				<p>The latest updates from my blog, straight to your inbox. <br> 
-					Plus extra goodies you won't get from this blog 👀</p>
-				<div class='subs'>
-					<input class='sub' type='email' placeholder='smart@guy.com'>
-					<button class='sub' type='submit'>Subscribe</button>
-				</div>
-			</div>
-			<div class='subscribe'>
-				<h2>Follow me on Twitter</h2>
-				<p>Don't like long form content?<br> Get byte sized updates on my
-					Twitter <a
-						href='https://twitter.com/SiddharthShyn'>@SiddharthShyn</a></p>
+		<div class='subscribe'>
+			<h2>Subscribe to my newsletter!</h2>
+			<p>The latest updates from my blog, straight to your inbox. <br> 
+				Plus extra goodies you won't get from this blog 👀</p>
+			<div class='subs'>
+				<input class='sub' type='email' placeholder='smart@guy.com'>
+				<button class='sub' type='submit'>Subscribe</button>
 			</div>
 		</div>
 
 		<div class='columns'>
 			<% for (const post of sortedPosts.slice(4)) { %>
-			<div class='post'>
-				<img src='<%= post.cover %>' alt='<%= post.title %>' class='cover'>
-				<div class='meta'>
-					<h2><a href='/<%= post.slug %>'><%= post.title %></a></h2>
-					<p><%= post.cta %></p>
-					<p>Published on <span class='date'>
+				<div class='post'>
+					<img src='<%= post.cover %>' alt='<%= post.title %>' class='cover'>
+					<div class='meta'>
+						<h2><a href='/<%= post.slug %>'><%= post.title %></a></h2>
+						<p><%= post.cta %></p>
+						<p>Published on <span class='date'>
 							<%= new Date(post.date).toLocaleString(undefined, {
-							year: 'numeric',
-							weekday: 'long',
-							month: 'long',
-							day: 'numeric',
+								year: 'numeric',
+								weekday: 'long',
+								month: 'long',
+								day: 'numeric',
 							}) %>
 						</span></p>
+					</div>
 				</div>
-			</div>
 			<% } %>
 		</div>
 
@@ -79,7 +71,7 @@
 			<p>&copy; <%= new Date().getFullYear() %> <a
 					href='https://siddu.tech'>Sid</a>. All blog post writing is licensed
 				<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC
-					BY-SA 4.0</a></p>
+					BY-SA 4.0</a>. All source code is released to the public domain</p>
 		</footer>
 	</body>
 </html>
