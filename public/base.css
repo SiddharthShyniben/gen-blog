@@ -4,8 +4,6 @@ body {
 	font-family: 'Fira Code', monospace;
 	font-display: swap;
 	height: 100vh;
-	width: 100vw;
-	margin: 0;
 
 	display: flex;
 	flex-direction: column;
@@ -88,7 +86,7 @@ a:visited:after {
 	justify-content: space-between;
 	width: 90vw;
 	margin: 0 auto;
-	max-width: 1750px;
+	max-width: max(90vw, 1750px);
 }
 
 .post {
@@ -185,199 +183,28 @@ h2 {
 	font-size: 1.5em;
 }
 
-/* .post .cta { */
-/* 	color: #9999a1; */
-/* } */
+body {
+	scrollbar-width: thin;
+	scrollbar-color: #9d7cd8 #1a1b26;
+}
+
+body::-webkit-scrollbar {
+	width: 1em;
+	height: 1em;
+}
+body::-webkit-scrollbar-track {
+	background-color: #1a1b26;
+}
+body::-webkit-scrollbar-thumb {
+	background-color: #9d7cd899;
+	border-radius: .5em;
+	border: 5px solid #1a1b26;
+}
+body::-webkit-scrollbar-thumb:hover {
+	background-color: #9d7cd8;
+}
 /**/
-/* hr.top-divider { */
-/* 	border: 1px solid #9d7cd8; */
-/* 	margin-bottom: 2em; */
-/* } */
-/**/
-/* .tag { */
-/* 	color: #60A5FA; */
-/* 	border-radius: 3px; */
-/* 	font-size: 0.8em; */
-/* 	font-weight: bold; */
-/* 	margin-right: 0.2em; */
-/* 	text-decoration: none; */
-/* } */
-/**/
-/* .tag:visited::before { */
-/* 	color: #60A5FA; */
-/* } */
-/**/
-/* .tag::before { */
-/* 	content: '#'; */
-/* 	color: #9d7cd8; */
-/* } */
-/**/
-/* .tag:hover { */
-/* 	filter: brightness(0.8); */
-/* } */
-/**/
-/* .cover { */
-/* 	width: 100%; */
-/* 	height: 100%; */
-/* 	margin-bottom: 1em; */
-/* } */
-/**/
-/* .two-column { */
-/* 	display: flex; */
-/* 	flex-direction: row; */
-/* 	flex-wrap: wrap; */
-/* 	flex-basis: 50%; */
-/**/
-/* 	justify-content: space-between; */
-/* 	align-items: baseline; */
-/**/
-/* 	margin-bottom: 1em; */
-/* 	margin-top: 3em; */
-/* } */
-/**/
-/* .two-column .post { */
-/* 	width: 45%; */
-/* 	margin-top: 2em; */
-/* } */
-/**/
-/* .two-column .post:nth-child(odd) { */
-/* 	margin-right: 1em; */
-/* } */
-/**/
-/* .two-column .post:nth-child(even) { */
-/* 	margin-left: 1em; */
-/* } */
-/**/
-/* a { */
-/* 	color: #60A5FA; */
-/* 	text-decoration: none; */
-/* } */
-/**/
-/* a:hover { */
-/* 	filter: brightness(0.8); */
-/* 	text-decoration: underline; */
-/* } */
-/**/
-/* footer { */
-/* 	margin-bottom: 2em; */
-/* } */
-/**/
-/* @media screen and (max-width: 768px) { */
-/* 	body { */
-/* 		width: calc(90vw - 3em); */
-/* 		margin: 0; */
-/* 		margin-left: 20px; */
-/* 	} */
-/**/
-/* 	.post { */
-/* 		width: 100%; */
-/* 	} */
-/**/
-/* 	.two-column { */
-/* 		flex-direction: column; */
-/* 		flex-wrap: wrap; */
-/* 		flex-basis: 100%; */
-/* 	} */
-/**/
-/* 	.two-column .post { */
-/* 		width: 100%; */
-/* 		margin-top: 1em; */
-/* 	} */
-/**/
-/* 	.two-column .post:nth-child(odd) { */
-/* 		margin-right: 0; */
-/* 	} */
-/**/
-/* 	.two-column .post:nth-child(even) { */
-/* 		margin-left: 0; */
-/* 	} */
-/* } */
-/**/
-/* .icon-link { */
-/* 	box-sizing: border-box; */
-/* 	position: relative; */
-/* 	display: block; */
-/* 	transform: rotate(-45deg) scale(var(--ggs,1)); */
-/* 	width: 8px; */
-/* 	height: 2px; */
-/* 	background: currentColor; */
-/* 	border-radius: 4px */
-/* } */
-/**/
-/* .icon-link::after, */
-/* .icon-link::before { */
-/* 	content: ""; */
-/* 	display: block; */
-/* 	box-sizing: border-box; */
-/* 	position: absolute; */
-/* 	border-radius: 3px; */
-/* 	width: 8px; */
-/* 	height: 10px; */
-/* 	border: 2px solid; */
-/* 	top: -4px */
-/* } */
-/**/
-/* .icon-link::before { */
-/* 	border-right: 0; */
-/* 	border-top-left-radius: 40px; */
-/* 	border-bottom-left-radius: 40px; */
-/* 	left: -6px */
-/* } */
-/**/
-/* .icon-link::after { */
-/* 	border-left: 0; */
-/* 	border-top-right-radius: 40px; */
-/* 	border-bottom-right-radius: 40px; */
-/* 	right: -6px */
-/* } */
-/**/
-/* .buttons { */
-/* 	margin-top: 3em; */
-/* 	display: flex; */
-/* 	flex-direction: row; */
-/* } */
-/**/
-/* .buttons button { */
-/* 	/* button reset */ */
-/* 	background: none; */
-/* 	border: none; */
-/* 	margin: 0; */
-/**/
-/* 	width: 1.5em; */
-/* 	height: 1.5em; */
-/**/
-/* 	margin-right: 0.75em; */
-/* } */
-/**/
-/* .buttons .button svg { */
-/* 	color: #9d7cd8; */
-/* } */
-/**/
-/* .buttons button:hover { */
-/* 	filter: brightness(0.8); */
-/* } */
-/**/
-/* .heart { */
-/* 	width: 100px; */
-/* 	height: 100px; */
-/* 	background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat; */
-/* 	background-position: 0 0; */
-/* 	cursor: pointer; */
-/* 	transition: background-position 1s steps(28); */
-/* 	transition-duration: 0s; */
-/* 	filter: brightness(0) saturate(100%) invert(28%) sepia(90%) saturate(1802%) hue-rotate(212deg) brightness(93%) contrast(98%); */
-/**/
-/* 	/* center the icon */ */
-/* 	transform: scale(.9) translate(calc(-50% + 8px), calc(-50% + 8px)); */
-/* } */
-/**/
-/* .heart.active { */
-/* 	filter: none; */
-/* 	transition-duration: 1s; */
-/* 	background-position: -2800px 0; */
-/* } */
-/**/
-/* .likes { */
-/* 	color: #9d7cd8; */
-/* 	font-family: "Fira Code", monospace; */
+/* body::-webkit-scrollbar-thumb { */
+/* 	background-color: #9d7cd8; */
+/* 	border: 3px solid #0000; */
 /* } */
