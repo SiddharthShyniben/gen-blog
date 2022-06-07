@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>My new blog!</title>
+
+		<link rel='stylesheet' href='../normalize.css'>
+		<link rel='stylesheet' href='../base.css'>
+		<link rel='stylesheet' href='../shiki.css'>
+	</head>
+	<body>
+		<header>
+			<h1><a href='/'>IDE</a></h1>
+		</header>
+		<hr class='top-divider'>
+		<div class='main'>
+			<h2 id="table-of-contents"><a aria-hidden="true" tabindex="-1" href="#table-of-contents"><span class="icon icon-link"></span></a>Table of Contents</h2>
+<ol>
+<li><a href="#better-code-blocks">Better code blocks</a></li>
+<li><a href="#todo">TODO</a>
+<ol>
+<li><a href="#yes">Yes</a>
+<ol>
+<li><a href="#its">It's</a>
+<ol>
+<li><a href="#a">A</a>
+<ol>
+<li><a href="#toc">TOC</a></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#more-stuff">More stuff</a></li>
+</ol>
+<h2 id="better-code-blocks"><a aria-hidden="true" tabindex="-1" href="#better-code-blocks"><span class="icon icon-link"></span></a>Better code blocks</h2>
+<p>The one feature which was the hugest headache is this:</p>
+<pre class="shiki twoslash lsp" style="background-color: #24283b; color: #a9b1d6"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #9D7CD8">const</span><span style="color: #A9B1D6"> </span><span style="color: #BB9AF7"><data-lsp lsp='const message: "Hello world!"' style='border-bottom: solid 2px #3d59a1;'>message</data-lsp></span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">=</span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">&apos;</span><span style="color: #9ECE6A">Hello world!</span><span style="color: #89DDFF">&apos;</span><span style="color: #89DDFF">;</span></div><div class='meta-line'><span class='popover-prefix'>        </span><span class='popover'><div class='arrow'></div>const message: "Hello world!"</span></div><div class='line'><span style="color: #9D7CD8">const</span><span style="color: #A9B1D6"> </span><span style="color: #7AA2F7"><data-lsp lsp='const sum: (a: number, b: number) => number' >sum</data-lsp></span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">=</span><span style="color: #A9B1D6"> </span><span style="color: #9ABDF5">(</span><span style="color: #E0AF68"><data-lsp lsp='(parameter) a: number' >a</data-lsp></span><span style="color: #89DDFF">:</span><span style="color: #A9B1D6"> </span><span style="color: #2AC3DE">number</span><span style="color: #89DDFF">,</span><span style="color: #A9B1D6"> </span><span style="color: #E0AF68"><data-lsp lsp='(parameter) b: number' >b</data-lsp></span><span style="color: #89DDFF">:</span><span style="color: #A9B1D6"> </span><span style="color: #2AC3DE">number</span><span style="color: #9ABDF5">)</span><span style="color: #A9B1D6"> </span><span style="color: #BB9AF7">=&gt;</span><span style="color: #A9B1D6"> </span><span style="color: #C0CAF5"><data-lsp lsp='(parameter) a: number' >a</data-lsp></span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">+</span><span style="color: #A9B1D6"> </span><span style="color: #C0CAF5"><data-lsp lsp='(parameter) b: number' >b</data-lsp></span><span style="color: #89DDFF">;</span></div><div class='line'><span style="color: #C0CAF5"><data-lsp lsp='var console: Console' >console</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='(method) Console.log(...data: any[]): void' >log</data-lsp></span><span style="color: #9ABDF5">(</span><span style="color: #7AA2F7"><data-lsp lsp='const sum: (a: number, b: number) => number' >sum</data-lsp></span><span style="color: #9ABDF5">(</span><span style="color: #FF9E64">1</span><span style="color: #89DDFF">,</span><span style="color: #A9B1D6"> </span><span style="color: #C0CAF5"><data-err><data-lsp lsp='const message: "Hello world!"' >message</data-lsp></data-err></span><span style="color: #9ABDF5">))</span><span style="color: #89DDFF">;</span></div><span class="error"><span>Argument of type 'string' is not assignable to parameter of type 'number'.</span><span class="code">2345</span></span><span class="error-behind">Argument of type 'string' is not assignable to parameter of type 'number'.</span></code></div></pre>
+<p>🤯</p>
+<p>This is achieved by a little tool called Twoslash, used in the TypeScript
+website itself. You can do more cool stuff:</p>
+<div class='tag-container'><pre class="shiki twoslash lsp" style="background-color: #24283b; color: #a9b1d6"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #565F89">// Hello</span></div><div class='line'><span style="color: #C0CAF5"><data-lsp lsp='var console: Console' >console</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='(method) Console.error(...data: any[]): void' >error</data-lsp></span><span style="color: #9ABDF5">(</span><span style="color: #89DDFF">"</span><span style="color: #9ECE6A">This is an error</span><span style="color: #89DDFF">"</span><span style="color: #9ABDF5">)</span></div><div class='meta-line logger error-log'><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.63018 1.29289L1.29289 4.63018C1.10536 4.81772 1 5.07207 1 5.33729V13.6627C1 13.9279 1.10536 14.1823 1.29289 14.3698L4.63018 17.7071C4.81772 17.8946 5.07207 18 5.33729 18H13.6627C13.9279 18 14.1823 17.8946 14.3698 17.7071L17.7071 14.3698C17.8946 14.1823 18 13.9279 18 13.6627V5.33729C18 5.07207 17.8946 4.81772 17.7071 4.63018L14.3698 1.29289C14.1823 1.10536 13.9279 1 13.6627 1H5.33729C5.07207 1 4.81772 1.10536 4.63018 1.29289Z" fill="#E72622" stroke="#E72622"/><rect x="8" y="4" width="3" height="7" fill="white"/><rect x="8" y="13" width="3" height="3" fill="white"/></svg><span class='message'>This is an error</span></div><div class='line'><span style="color: #C0CAF5"><data-lsp lsp='var console: Console' >console</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='(method) Console.log(...data: any[]): void' >log</data-lsp></span><span style="color: #9ABDF5">(</span><span style="color: #89DDFF">"</span><span style="color: #9ECE6A">This is a log</span><span style="color: #89DDFF">"</span><span style="color: #9ABDF5">)</span></div><div class='meta-line logger log-log'><svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.76822 0.359816C5.41466 -0.0644613 4.78409 -0.121785 4.35982 0.231779C3.93554 0.585343 3.87821 1.21591 4.23178 1.64018L5.76822 0.359816ZM10 7L10.7926 7.60971L11.2809 6.97499L10.7682 6.35982L10 7ZM4.20738 12.8903C3.87064 13.328 3.95254 13.9559 4.39029 14.2926C4.82804 14.6294 5.45589 14.5475 5.79262 14.1097L4.20738 12.8903ZM4.23178 1.64018L9.23178 7.64018L10.7682 6.35982L5.76822 0.359816L4.23178 1.64018ZM9.20738 6.39029L4.20738 12.8903L5.79262 14.1097L10.7926 7.60971L9.20738 6.39029Z" fill="#BDBDBD"/><line y1="3.5" x2="4" y2="3.5" stroke="#BDBDBD"/><path d="M0 7H4" stroke="#BDBDBD"/><line y1="10.5" x2="4" y2="10.5" stroke="#BDBDBD"/></svg><span class='message'>This is a log</span></div><div class='line'><span style="color: #C0CAF5"><data-lsp lsp='var console: Console' >console</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='(method) Console.warn(...data: any[]): void' >warn</data-lsp></span><span style="color: #9ABDF5">(</span><span style="color: #89DDFF">"</span><span style="color: #9ECE6A">This is a warning</span><span style="color: #89DDFF">"</span><span style="color: #9ABDF5">)</span></div><div class='meta-line logger warn-log'><svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.63401 0.5C10.0189 -0.166667 10.9812 -0.166667 11.3661 0.5L20.4593 16.25C20.8442 16.9167 20.3631 17.75 19.5933 17.75H1.40676C0.636965 17.75 0.15584 16.9167 0.54074 16.25L9.63401 0.5Z" fill="#E5A604"/><rect x="9" y="4" width="3" height="7" fill="white"/><rect x="9" y="13" width="3" height="3" fill="white"/></svg><span class='message'>This is a warning</span></div></code></div></pre></div>
+<pre class="shiki twoslash lsp" style="background-color: #24283b; color: #a9b1d6"><div class="language-id">ts</div><div class='code-container'><code><div class='line dim'><span style="color: #C0CAF5"><data-lsp lsp='any' >useless</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='any' >code</data-lsp></span><span style="color: #9ABDF5">()</span><span style="color: #89DDFF">;</span></div><div class='line dim'><span style="color: #C0CAF5"><data-lsp lsp='any' >more</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7DCFFF"><data-lsp lsp='any' >useless</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='any' >code</data-lsp></span><span style="color: #9ABDF5">()</span><span style="color: #89DDFF">;</span></div><div class='line dim'><span style="color: #C0CAF5"><data-lsp lsp='any' >some</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='any' >more</data-lsp></span><span style="color: #9ABDF5">()</span><span style="color: #89DDFF">;</span></div><div class='line highlight'><span style="color: #9D7CD8">const</span><span style="color: #A9B1D6"> </span><span style="color: #BB9AF7"><data-lsp lsp='const date: Date' >date</data-lsp></span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">=</span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">new</span><span style="color: #A9B1D6"> </span><span style="color: #2AC3DE"><data-lsp lsp='var Date: DateConstructor&#10;new () => Date (+4 overloads)' >Date</data-lsp></span><span style="color: #9ABDF5">()</span><span style="color: #89DDFF">;</span></div><div class='line dim'><span style="color: #C0CAF5"><data-lsp lsp='var console: Console' >console</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='(method) Console.log(...data: any[]): void' >log</data-lsp></span><span style="color: #9ABDF5">(</span><span style="color: #C0CAF5"><data-lsp lsp='const date: Date' >date</data-lsp></span><span style="color: #9ABDF5">)</span></div></code></div></pre>
+<p><br><br></p>
+<div class='tag-container'><pre class="shiki twoslash lsp" style="background-color: #24283b; color: #a9b1d6"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #9D7CD8">const</span><span style="color: #A9B1D6"> </span><span style="color: #BB9AF7"><data-lsp lsp='const date: Date' >date</data-lsp></span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">=</span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">new</span><span style="color: #A9B1D6"> </span><span style="color: #2AC3DE"><data-lsp lsp='var Date: DateConstructor&#10;new () => Date (+4 overloads)' >Date</data-lsp></span><span style="color: #9ABDF5">()</span><span style="color: #89DDFF">;</span></div></code></div></pre>
+<div class='twoslash-annotation right' style="top: 0em">
+  <svg style='transform: translateX(20px) translateY(20px) rotate(90deg);' width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M27 39C26.5 32.7511 21.9 17.5173 7.5 6.57333M16.5 4.04L0.999999 0.999998C3.16667 4.88444 7.5 13.16 7.5 15.1867" stroke="black" />
+</svg>
+  <p class='twoslash-annotation-text' style="transform: rotate(0deg)">Creates date. Some more blah blah to stress test this</p>
+</div></div>
+<pre class="shiki twoslash lsp" style="background-color: #24283b; color: #a9b1d6"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #9D7CD8">const</span><span style="color: #A9B1D6"> </span><span style="color: #BB9AF7"><data-lsp lsp='const a: Person' >a</data-lsp></span><span style="color: #89DDFF">:</span><span style="color: #A9B1D6"> </span><span style="color: #C0CAF5"><data-lsp lsp='interface Person' >Person</data-lsp></span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">=</span><span style="color: #A9B1D6"> </span><span style="color: #9ABDF5">{</span></div><div class='line'><span style="color: #A9B1D6">	</span><span style="color: #73DACA"><data-lsp lsp='(property) Person.name: string' >name</data-lsp></span><span style="color: #89DDFF">:</span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">&apos;</span><span style="color: #9ECE6A">John</span><span style="color: #89DDFF">&apos;</span><span style="color: #89DDFF">,</span></div><div class='line'><span style="color: #A9B1D6">	</span><span style="color: #73DACA"><data-lsp lsp='(property) Person.age: number' >age</data-lsp></span><span style="color: #89DDFF">:</span><span style="color: #A9B1D6"> </span><span style="color: #FF9E64">42</span><span style="color: #89DDFF">,</span></div><div class='line'><span style="color: #9ABDF5">}</span><span style="color: #89DDFF">;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #C0CAF5"><data-lsp lsp='var console: Console' >console</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='(method) Console.log(...data: any[]): void' >log</data-lsp></span><span style="color: #9ABDF5">(</span><span style="color: #C0CAF5"><data-lsp lsp='const a: Person' >a</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7DCFFF"><data-lsp lsp='any' >n</data-lsp></span></div><div class='meta-line'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='inline-completions'><ul class='dropdown'><li class=''><span><span class='result-found'>n</span>ame<span></li></ul></span></div><div class='line'>&nbsp;</div></code></div></pre>
+<p>You can see 2 things here:</p>
+<ol>
+<li>The Person interface is hidden</li>
+<li>The compiler gives you autocomplete!</li>
+</ol>
+<pre class="shiki twoslash lsp" style="background-color: #24283b; color: #a9b1d6"><div class="language-id">ts</div><div class='code-container'><code><div class='line'><span style="color: #7DCFFF">import</span><span style="color: #A9B1D6"> </span><span style="color: #2AC3DE"><data-lsp lsp='(alias) function express(): core.Express&#10;(alias) namespace express&#10;import express' >express</data-lsp></span><span style="color: #A9B1D6"> </span><span style="color: #7DCFFF">from</span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">"</span><span style="color: #9ECE6A">express</span><span style="color: #89DDFF">"</span></div><div class='line'><span style="color: #9D7CD8">const</span><span style="color: #A9B1D6"> </span><span style="color: #BB9AF7"><data-lsp lsp='const app: Express' >app</data-lsp></span><span style="color: #A9B1D6"> </span><span style="color: #89DDFF">=</span><span style="color: #A9B1D6"> </span><span style="color: #7AA2F7"><data-lsp lsp='(alias) express(): Express&#10;import express' >express</data-lsp></span><span style="color: #9ABDF5">()</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #C0CAF5"><data-lsp lsp='const app: Express' >app</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='(property) Application&lt;Record&lt;string, any>>.get: &lt;"/", {}, any, any, QueryString.ParsedQs, Record&lt;string, any>>(path: "/", ...handlers: RequestHandler&lt;{}, any, any, QueryString.ParsedQs, Record&lt;string, any>>[]) => Express (+5 overloads)' >get</data-lsp></span><span style="color: #9ABDF5">(</span><span style="color: #89DDFF">"</span><span style="color: #9ECE6A">/</span><span style="color: #89DDFF">"</span><span style="color: #89DDFF">,</span><span style="color: #A9B1D6"> </span><span style="color: #9ABDF5">(</span><span style="color: #E0AF68"><data-lsp lsp='(parameter) req: Request&lt;{}, any, any, QueryString.ParsedQs, Record&lt;string, any>>' >req</data-lsp></span><span style="color: #89DDFF">,</span><span style="color: #A9B1D6"> </span><span style="color: #E0AF68"><data-lsp lsp='(parameter) res: Response&lt;any, Record&lt;string, any>, number>' >res</data-lsp></span><span style="color: #9ABDF5">)</span><span style="color: #A9B1D6"> </span><span style="color: #BB9AF7">=&gt;</span><span style="color: #A9B1D6"> </span><span style="color: #9ABDF5">{</span></div><div class='line'><span style="color: #9ABDF5">  </span><span style="color: #C0CAF5"><data-lsp lsp='(parameter) res: Response&lt;any, Record&lt;string, any>, number>' >res</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7DCFFF"><data-lsp lsp='any' >sen</data-lsp></span></div><div class='meta-line'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class='inline-completions'><ul class='dropdown'><li class=''><span><span class='result-found'>sen</span>d<span></li><li class=''><span><span class='result-found'>sen</span>dDate<span></li><li class='deprecated'><span><span class='result-found'>sen</span>dfile<span></li><li class=''><span><span class='result-found'>sen</span>dFile<span></li><li class=''><span><span class='result-found'>sen</span>dStatus<span></li></ul></span></div><div class='line'><span style="color: #9ABDF5">})</span></div><div class='line'>&nbsp;</div><div class='line'>&nbsp;</div><div class='line'>&nbsp;</div><div class='line'><span style="color: #C0CAF5"><data-lsp lsp='const app: Express' >app</data-lsp></span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7"><data-lsp lsp='(method) Application&lt;Record&lt;string, any>>.listen(port: number, callback?: (() => void) | undefined): Server (+5 overloads)' >listen</data-lsp></span><span style="color: #9ABDF5">(</span><span style="color: #FF9E64">3000</span><span style="color: #9ABDF5">)</span></div></code></div></pre>
+<p>Simply install the devdependency <code>@types/express</code> and you can see the
+autocomplete for the <code>res.send</code> method!</p>
+<p>Another thing I setup is that you can embed code, like MDX:</p>
+<script>
+let counter = 1;
+function increment() {
+	counter++;
+	document.querySelector('p.inc').innerHTML = `The number is ${counter}`;
+}
+</script>
+<p><button onclick='increment()'>Click me</button></p>
+<p class='inc'>The number is 1</p>
+<pre class="shiki" style="background-color: #24283b"><code><span class="line"><span style="color: #BA3C97">&lt;</span><span style="color: #F7768E">script</span><span style="color: #BA3C97">&gt;</span></span>
+<span class="line"><span style="color: #9D7CD8; font-style: italic">let</span><span style="color: #C0CAF5"> </span><span style="color: #BB9AF7">counter</span><span style="color: #C0CAF5"> </span><span style="color: #89DDFF">=</span><span style="color: #C0CAF5"> </span><span style="color: #FF9E64">1</span><span style="color: #89DDFF">;</span></span>
+<span class="line"><span style="color: #BB9AF7">function</span><span style="color: #C0CAF5"> </span><span style="color: #7AA2F7">increment</span><span style="color: #9ABDF5">()</span><span style="color: #C0CAF5"> </span><span style="color: #9ABDF5">{</span></span>
+<span class="line"><span style="color: #9ABDF5">	</span><span style="color: #C0CAF5">counter</span><span style="color: #89DDFF">++;</span></span>
+<span class="line"><span style="color: #9ABDF5">	</span><span style="color: #C0CAF5">document</span><span style="color: #89DDFF">.</span><span style="color: #7AA2F7">querySelector</span><span style="color: #9ABDF5">(</span><span style="color: #89DDFF">&#39;</span><span style="color: #9ECE6A">p.inc</span><span style="color: #89DDFF">&#39;</span><span style="color: #9ABDF5">)</span><span style="color: #89DDFF">.</span><span style="color: #7DCFFF">innerHTML</span><span style="color: #9ABDF5"> </span><span style="color: #89DDFF">=</span><span style="color: #9ABDF5"> </span><span style="color: #89DDFF">`</span><span style="color: #9ECE6A">The number is </span><span style="color: #7DCFFF">${</span><span style="color: #C0CAF5">counter</span><span style="color: #7DCFFF">}</span><span style="color: #89DDFF">`</span><span style="color: #89DDFF">;</span></span>
+<span class="line"><span style="color: #9ABDF5">}</span></span>
+<span class="line"><span style="color: #BA3C97">&lt;/</span><span style="color: #F7768E">script</span><span style="color: #BA3C97">&gt;</span></span>
+<span class="line"><span style="color: #BA3C97">&lt;</span><span style="color: #F7768E">button</span><span style="color: #DE5971"> </span><span style="color: #BB9AF7">onclick</span><span style="color: #89DDFF">=</span><span style="color: #89DDFF">&#39;</span><span style="color: #7AA2F7">increment</span><span style="color: #9ABDF5">()</span><span style="color: #89DDFF">&#39;</span><span style="color: #BA3C97">&gt;</span><span style="color: #9AA5CE">Click me</span><span style="color: #BA3C97">&lt;/</span><span style="color: #F7768E">button</span><span style="color: #BA3C97">&gt;</span></span>
+<span class="line"><span style="color: #BA3C97">&lt;</span><span style="color: #F7768E">p</span><span style="color: #DE5971"> </span><span style="color: #BB9AF7">class</span><span style="color: #89DDFF">=</span><span style="color: #89DDFF">&#39;</span><span style="color: #9ECE6A">inc</span><span style="color: #89DDFF">&#39;</span><span style="color: #BA3C97">&gt;</span><span style="color: #9AA5CE">The number is 1</span><span style="color: #BA3C97">&lt;/</span><span style="color: #F7768E">p</span><span style="color: #BA3C97">&gt;</span></span></code></pre>
+<p>Not quite MDX, but I rarely use frameworks in blog posts, so ¯\_(ツ)_/¯</p>
+<p>And if you're curious, the beautiful highlight comes from
+<a href="https://shiki.matsu.io/">Shiki</a>. It uses TextMate grammars used by most IDEs to
+get the syntax <em>just</em> right!</p>
+<h2 id="todo1"><a aria-hidden="true" tabindex="-1" href="#todo1"><span class="icon icon-link"></span></a>TODO<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref aria-describedby="footnote-label">1</a></sup></h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Analytics</li>
+<li class="task-list-item"><input type="checkbox" disabled> Fix the tag links in the homepage</li>
+<li class="task-list-item"><input type="checkbox" disabled> Comments!</li>
+<li class="task-list-item"><input type="checkbox" disabled> SEO</li>
+<li class="task-list-item"><input type="checkbox" disabled> Drafts? (Then I would have to make this closed source :( )</li>
+</ul>
+<h3 id="yes"><a aria-hidden="true" tabindex="-1" href="#yes"><span class="icon icon-link"></span></a>Yes</h3>
+<h4 id="its"><a aria-hidden="true" tabindex="-1" href="#its"><span class="icon icon-link"></span></a>It's</h4>
+<h5 id="a"><a aria-hidden="true" tabindex="-1" href="#a"><span class="icon icon-link"></span></a>A</h5>
+<h6 id="toc"><a aria-hidden="true" tabindex="-1" href="#toc"><span class="icon icon-link"></span></a>TOC</h6>
+<h2 id="more-stuff"><a aria-hidden="true" tabindex="-1" href="#more-stuff"><span class="icon icon-link"></span></a>More stuff</h2>
+<p>While we're at it, let's try some more stuff:</p>
+<p><svg xmlns:xlink="http://www.w3.org/1999/xlink" height="233" fill="#ccc" font-family="&#x22;trebuchet ms&#x22;,verdana,arial,sans-serif" font-size="16px" style="max-width:124.640625px" viewBox="0 0 124.641 233">
+  <defs>
+    <path id="b" fill="#d3d3d3" stroke-dasharray="1 0" d="m0 0 10 5-10 5z"></path>
+  </defs>
+  <g opacity="1">
+    <path fill="none" stroke="#d3d3d3" stroke-width="2px" marker-end="url(#a)" d="m47.473 44.015-4.157 4.664c-4.157 4.664-12.47 13.993-16.628 22.823-4.157 8.831-4.157 17.165-4.157 21.331V97"></path>
+    <defs>
+      <marker id="a" markerHeight="6" markerUnits="strokeWidth" markerWidth="8" orient="auto" refX="9" refY="5" viewBox="0 0 10 10">
+        <use xlink:href="#b" stroke-dasharray="1 0"></use>
+      </marker>
+    </defs>
+  </g>
+  <g opacity="1">
+    <path fill="none" stroke="#d3d3d3" stroke-width="2px" marker-end="url(#c)" d="m76.91 44.015 4.157 4.664c4.157 4.664 12.47 13.993 16.628 22.823 4.157 8.831 4.157 17.165 4.157 21.331V97"></path>
+    <defs>
+      <marker id="c" markerHeight="6" markerUnits="strokeWidth" markerWidth="8" orient="auto" refX="9" refY="5" viewBox="0 0 10 10">
+        <use xlink:href="#b" stroke-dasharray="1 0"></use>
+      </marker>
+    </defs>
+  </g>
+  <g opacity="1">
+    <path fill="none" stroke="#d3d3d3" stroke-width="2px" marker-end="url(#d)" d="M22.531 136v4.167c0 4.166 0 12.5 4.126 21.295 4.126 8.796 12.377 18.054 16.503 22.684l4.125 4.629"></path>
+    <defs>
+      <marker id="d" markerHeight="6" markerUnits="strokeWidth" markerWidth="8" orient="auto" refX="9" refY="5" viewBox="0 0 10 10">
+        <use xlink:href="#b" stroke-dasharray="1 0"></use>
+      </marker>
+    </defs>
+  </g>
+  <g opacity="1">
+    <path fill="none" stroke="#d3d3d3" stroke-width="2px" marker-end="url(#e)" d="M101.852 136v4.167c0 4.166 0 12.5-4.126 21.295-4.126 8.796-12.377 18.054-16.503 22.684l-4.125 4.629"></path>
+    <defs>
+      <marker id="e" markerHeight="6" markerUnits="strokeWidth" markerWidth="8" orient="auto" refX="9" refY="5" viewBox="0 0 10 10">
+        <use xlink:href="#b" stroke-dasharray="1 0"></use>
+      </marker>
+    </defs>
+  </g>
+  <foreignObject width="0" height="0" color="#ccc" style="background-color:#585858;text-align:center">
+    <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+      <span fill="#ccc" color="#ccc" style="background-color:#585858;text-align:center">
+    </span></div>
+  </foreignObject>
+  <foreignObject width="0" height="0" color="#ccc" style="background-color:#585858;text-align:center">
+    <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+      <span fill="#ccc" color="#ccc" style="background-color:#585858;text-align:center">
+    </span></div>
+  </foreignObject>
+  <foreignObject width="0" height="0" color="#ccc" style="background-color:#585858;text-align:center">
+    <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+      <span fill="#ccc" color="#ccc" style="background-color:#585858;text-align:center">
+    </span></div>
+  </foreignObject>
+  <foreignObject width="0" height="0" color="#ccc" style="background-color:#585858;text-align:center">
+    <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+      <span fill="#ccc" color="#ccc" style="background-color:#585858;text-align:center">
+    </span></div>
+  </foreignObject>
+  <g opacity="1" transform="translate(62.191 27.5)">
+    <rect width="29.438" height="39" x="-14.719" y="-19.5" fill="#1f2020" stroke="#81b1db" stroke-width="1px" rx="0" ry="0"></rect>
+    <foreignObject width="9.438" height="19" transform="translate(-4.719 -9.5)" color="#ccc" style="text-align:center">
+      <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+        A
+      </div>
+    </foreignObject>
+  </g>
+  <g opacity="1" transform="translate(22.531 116.5)">
+    <rect width="29.063" height="39" x="-14.531" y="-19.5" fill="#1f2020" stroke="#81b1db" stroke-width="1px" rx="0" ry="0"></rect>
+    <foreignObject width="9.063" height="19" transform="translate(-4.531 -9.5)" color="#ccc" style="text-align:center">
+      <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+        B
+      </div>
+    </foreignObject>
+  </g>
+  <g opacity="1" transform="translate(101.852 116.5)">
+    <rect width="29.578" height="39" x="-14.789" y="-19.5" fill="#1f2020" stroke="#81b1db" stroke-width="1px" rx="0" ry="0"></rect>
+    <foreignObject width="9.578" height="19" transform="translate(-4.79 -9.5)" color="#ccc" style="text-align:center">
+      <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+        C
+      </div>
+    </foreignObject>
+  </g>
+  <g opacity="1" transform="translate(62.191 205.5)">
+    <rect width="29.813" height="39" x="-14.906" y="-19.5" fill="#1f2020" stroke="#81b1db" stroke-width="1px" rx="0" ry="0"></rect>
+    <foreignObject width="9.813" height="19" transform="translate(-4.906 -9.5)" color="#ccc" style="text-align:center">
+      <div xmlns="http://www.w3.org/1999/xhtml" display="inline-block" style="white-space:nowrap">
+        D
+      </div>
+    </foreignObject>
+  </g>
+</svg>
+</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">It took me 2 hours to successfully build a blog MVP with Node.js but it took me days to fail to build a blog MVP with frameworks.<br><br>Guess I am a backend guy after all</p>&mdash; Siddharth Shyniben (@SiddharthShyn) <a href="https://twitter.com/SiddharthShyn/status/1518796282533658624?ref_src=twsrc%5Etfw">April 26, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<section data-footnotes class="footnotes"><h2 id="footnote-label" class="sr-only"><a aria-hidden="true" tabindex="-1" href="#footnote-label"><span class="icon icon-link"></span></a>Footnotes</h2>
+<ol>
+<li id="user-content-fn-1">
+<p><small>Yes, I just showed off GFM Task lists. And footnotes</small> <a href="#user-content-fnref-1" data-footnote-backref class="data-footnote-backref" aria-label="Back to content">↩</a></p>
+</li>
+</ol>
+</section>
+		</div>
+
+		<hr class='top-divider'>
+
+		<footer>
+			<p>
+				&copy; 2022 <a href='https://siddu.tech'>Sid</a>. All content is licensed
+				<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC BY-SA 4.0</a>.
+			</p>
+		</footer>
+
+		<script>
+			document.querySelector('button.share').addEventListener('click', function () {
+				window.open(`https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20blog%20post%20by%20Sid!&url=${window.location}`);
+			})
+			document.querySelector('.heart').addEventListener('click', function () {
+			   this.classList.toggle('active');
+			   like();
+			})
+
+			function like() {
+				fetch('https://gen-be-production.up.railway.app/like?id=' +
+				   encodeURIComponent(window.location.href), {method: 'POST'})
+			}
+
+			async function updateLikes() {
+				const likes = await fetch('https://gen-be-production.up.railway.app/like?id=' +
+				   encodeURIComponent(window.location.href)).then(res => res.json());
+				document.querySelector('.likes').innerText = likes.likes;
+			}
+		</script>
+	</body>
+</html>

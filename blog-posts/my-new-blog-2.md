@@ -1,7 +1,7 @@
 ---
 title: My new blog!
 tags: [showcase]
-slug: welcome
+slug: welcome-2
 cover: https://picsum.photos/1600/900
 cta: The integrated blogging experience
 date: 2022-04-28
