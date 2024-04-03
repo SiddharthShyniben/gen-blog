@@ -1,6 +1,6 @@
 import { arrow, ls, _arrow } from "./utils.js";
 import { SingleBar, Presets } from "cli-progress";
-import { process, write, writeMetaData } from "./process.js";
+import { process, write, writeIndex, writeMetaData } from "./process.js";
 
 arrow(0, "Building");
 const files = await ls("blog-posts/");
@@ -28,4 +28,5 @@ bar.increment({ step: "" });
 bar.stop();
 
 writeMetaData(posts);
+await writeIndex(posts);
 arrow(0, "Done");

@@ -18,8 +18,10 @@ import retextPassive from "retext-passive";
 import retextReadability from "retext-readability";
 import retextSimplify from "retext-simplify";
 import rehypeSlug from "rehype-slug";
+import rehypeShiki from "@shikijs/rehype";
+import { transformerTwoslash, rendererRich } from "@shikijs/twoslash";
 
-import { basename } from "path";
+import { basename, join } from "path";
 import { writeFileSync, readFileSync, mkdirSync } from "fs";
 import { arrow, RATIOS, shikiVisitor, _arrow } from "./utils.js";
 
@@ -72,12 +74,20 @@ export async function process(file) {
         if (node.type === "yaml") frontmatter = parse(node.value);
       });
     })
-    .use(log("Using shiki to highlight code..."))
-    .use(shikiVisitor)
     .use(log("Generating a table of contents..."))
     .use(remarkToc, { tight: true, ordered: true })
     .use(log("Convert to HTML..."))
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(log("Using shiki to highlight code..."))
+    // .use(shikiVisitor)
+    .use(rehypeShiki, {
+      theme: "vitesse-dark",
+      transformers: [
+        transformerTwoslash({
+          renderer: rendererRich(),
+        }),
+      ],
+    })
     .use(log("Generating heading IDs for anchors..."))
     .use(rehypeSlug)
     .use(log("Autolinking headings..."))
@@ -125,4 +135,10 @@ export async function write(data, bar) {
 export function writeMetaData(posts) {
   writeFileSync("meta.json", JSON.stringify({ posts }, null, "\t"));
   arrow(1, "Wrote", "meta.json");
+}
+
+export async function writeIndex(posts) {
+  const out = await ejs.renderFile("source/index.ejs", { posts });
+  writeFileSync(join(import.meta.dirname, "public/index.html"), out);
+  arrow(1, "Wrote index.html");
 }

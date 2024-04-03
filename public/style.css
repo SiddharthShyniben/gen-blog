@@ -179,3 +179,16 @@ header a[href] {
   color: #c0caf5;
   text-decoration: none;
 }
+
+pre {
+  padding: 1rem;
+}
+
+.twoslash-tag-line,
+.twoslash-meta-line {
+  transform: translateX(-1rem);
+}
+
+body {
+  overflow-x: hidden;
+}

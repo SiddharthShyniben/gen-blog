@@ -1,10 +1,11 @@
 import { readdir } from "fs/promises";
 import { join } from "path";
 
-import { visit } from "unist-util-visit";
-import shiki from "shiki";
 import tokyonight from "./tokyo-night-storm-color-theme.json" assert { type: "json" };
-import { runTwoSlash, renderCodeToHTML } from "shiki-twoslash";
+
+import { visit } from "unist-util-visit";
+import { codeToHtml } from "shiki";
+import { rendererRich, transformerTwoslash } from "@shikijs/twoslash";
 
 export const ls = async (folder) => {
   const files = await readdir(join(import.meta.dirname, folder), {
@@ -26,43 +27,28 @@ export const arrow = (depth = 0, ...rest) => {
   console.log(_arrow(depth), ...rest);
 };
 
-const highlighter = await shiki.getHighlighter({ theme: tokyonight });
 export const shikiVisitor = () => (tree) => {
-  visit(tree, "code", (node) => {
+  visit(tree, "code", async (node) => {
+    console.error(node);
     const code = node.value;
     if (node.meta === "twoslash") {
-      const twoslash = runTwoSlash(code, "ts", {});
-      let highlight = {};
-      if (twoslash.highlights) {
-        twoslash.highlights.forEach(({ line }) => {
-          highlight[line + 1] = true;
-        });
-      }
-      const html = renderCodeToHTML(
-        twoslash.code,
-        "ts",
-        { twoslash: true, highlight },
-        {},
-        highlighter,
-        twoslash,
-      );
+      const html = await codeToHtml(code, {
+        lang: node.lang,
+        theme: "vitesse-dark",
+        transformers: [transformerTwoslash({ renderer: rendererRich() })],
+      });
 
       node.value = html;
     } else {
       try {
-        node.value = highlighter.codeToHtml(code, { lang: node.lang });
+        node.value = await codeToHtml(code, {
+          lang: node.lang,
+          theme: "vitesse-dark",
+        });
       } catch (e) {
         console.log(`Could not highlight ${node.lang} for ${node.value}`);
         node.value = code;
       }
     }
-
-    node.value = node.value.replaceAll(
-      "border-bottom: solid 2px lightgrey",
-      "border-bottom: solid 2px #3d59a1",
-    );
-
-    node.type = "html";
-    node.children = [];
   });
 };

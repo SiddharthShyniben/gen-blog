@@ -18,7 +18,7 @@ It's still a bit rough and buggy, and I've not even *touched* SEO. But I've
 added some really cool features related to the blog post content that will blow
 your mind!
 
-## Better code blocks
+## Better code blocks!!!
 
 The one feature which was the hugest headache is this:
 
@@ -55,7 +55,6 @@ const date = new Date();
 console.log(date)
 ```
 
-<br><br>
 ```typescript twoslash
 // @annotate: right - Creates date. Some more blah blah to stress test this
 const date = new Date();
@@ -77,7 +76,6 @@ const a: Person = {
 // @noErrors
 console.log(a.n
 //             ^|
-
 ```
 
 You can see 2 things here:
