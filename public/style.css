@@ -167,3 +167,15 @@ footer {
 .copyright {
   font-family: sans-serif;
 }
+
+/* Article specific */
+
+.main {
+  width: 80%;
+  margin: auto;
+}
+
+header a[href] {
+  color: #c0caf5;
+  text-decoration: none;
+}
