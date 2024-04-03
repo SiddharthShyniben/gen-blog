@@ -23,7 +23,10 @@ import { transformerTwoslash, rendererRich } from "@shikijs/twoslash";
 
 import { basename, join } from "path";
 import { writeFileSync, readFileSync, mkdirSync } from "fs";
-import { arrow, RATIOS, shikiVisitor, _arrow } from "./utils.js";
+import { arrow, _arrow } from "./utils.js";
+import remarkOembed from "remark-oembed";
+import remarkPresetLintRecommended from "remark-preset-lint-recommended";
+import tokyonight from "./themes/tokyo-night-storm-color-theme.json" assert { type: "json" };
 
 export async function process(file) {
   const fname = basename(file, ".md");
@@ -41,56 +44,44 @@ export async function process(file) {
     Presets.shades_classic,
   );
 
-  let i = 0;
-  bar.start(
-    RATIOS.reduce((a, b) => a + b),
-    0,
-    { step: "" },
-  );
-  const log = (step) => () => () => bar.increment(RATIOS[i++], { step });
+  bar.start(9, 0, { step: "" });
+  const log = (step) => () => () => bar.increment({ step });
 
   const rendered = await unified()
     .use(log("Parsing markdown..."))
+    .use(remarkPresetLintRecommended)
     .use(remarkParse)
     .use(log("Extracting frontmatter..."))
     .use(remarkFrontmatter)
-    .use(log("Converting github flavored markdown..."))
-    .use(remarkGfm)
-    .use(log("Converting emoji..."))
-    .use(remarkEmoji)
-    .use(log("Parsing mermaid diagrams..."))
-    .use(remarkMermaid, { theme: "dark" })
-    .use(log("Performing spell checks.."))
-    .use(retextSpell, dictionary)
-    .use(log("Performing checks for passive language..."))
-    .use(retextPassive)
-    .use(log("Checking readability..."))
-    .use(retextReadability)
-    .use(log("Checking for complex wording.."))
-    .use(retextSimplify)
-    .use(log("Extracting frontmatter..."))
     .use(() => (tree) => {
       tree.children.forEach((node) => {
         if (node.type === "yaml") frontmatter = parse(node.value);
       });
     })
-    .use(log("Generating a table of contents..."))
+    .use(log("Converting additional formats..."))
+    .use(remarkGfm)
+    .use(remarkEmoji)
+    .use(remarkOembed)
+    .use(remarkMermaid, { theme: "dark" })
     .use(remarkToc, { tight: true, ordered: true })
+    .use(log("Performing language checks.."))
+    .use(retextSpell, dictionary)
+    .use(retextPassive)
+    .use(retextReadability)
+    .use(retextSimplify)
     .use(log("Convert to HTML..."))
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(log("Using shiki to highlight code..."))
-    // .use(shikiVisitor)
     .use(rehypeShiki, {
-      theme: "vitesse-dark",
+      theme: tokyonight,
       transformers: [
         transformerTwoslash({
           renderer: rendererRich(),
         }),
       ],
     })
-    .use(log("Generating heading IDs for anchors..."))
-    .use(rehypeSlug)
     .use(log("Autolinking headings..."))
+    .use(rehypeSlug)
     .use(rehypeAutolinkHeadings)
     .use(log("Converting tree back to string..."))
     .use(rehypeStringify, { allowDangerousHtml: true })
@@ -119,26 +110,26 @@ export async function process(file) {
 export async function write(data, bar) {
   const { slug, content, frontmatter } = data;
   try {
-    mkdirSync(`./public/${slug}`);
+    mkdirSync(`../public/${slug}`);
   } catch {}
 
-  const out = await ejs.renderFile("source/post.ejs", {
+  const out = await ejs.renderFile("templates/post.ejs", {
     title: frontmatter?.title,
     content,
   });
 
-  writeFileSync(`./public/${slug}/index.html`, out);
-  bar.increment({ step: `./public/${slug}/index.html` });
+  writeFileSync(`../public/${slug}/index.html`, out);
+  bar.increment({ step: `../public/${slug}/index.html` });
   return frontmatter;
 }
 
 export function writeMetaData(posts) {
-  writeFileSync("meta.json", JSON.stringify({ posts }, null, "\t"));
+  writeFileSync("data/meta.json", JSON.stringify({ posts }, null, "\t"));
   arrow(1, "Wrote", "meta.json");
 }
 
 export async function writeIndex(posts) {
-  const out = await ejs.renderFile("source/index.ejs", { posts });
-  writeFileSync(join(import.meta.dirname, "public/index.html"), out);
+  const out = await ejs.renderFile("templates/index.ejs", { posts });
+  writeFileSync(join(import.meta.dirname, "../public/index.html"), out);
   arrow(1, "Wrote index.html");
 }

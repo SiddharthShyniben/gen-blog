@@ -1,9 +1,10 @@
-import { arrow, ls, _arrow } from "./utils.js";
 import { SingleBar, Presets } from "cli-progress";
-import { process, write, writeIndex, writeMetaData } from "./process.js";
+
+import { arrow, ls, _arrow } from "./src/utils.js";
+import { process, write, writeIndex, writeMetaData } from "./src/process.js";
 
 arrow(0, "Building");
-const files = await ls("blog-posts/");
+const files = await ls("../blog-posts/");
 arrow(1, "Found", files.length, "posts");
 
 const processed = [];
