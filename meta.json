@@ -15,6 +15,16 @@
 			"tags": [
 				"showcase"
 			],
+			"slug": "welcome-1",
+			"cover": "https://picsum.photos/1600/900",
+			"cta": "The integrated blogging experience",
+			"date": 1651104000000
+		},
+		{
+			"title": "My new blog!",
+			"tags": [
+				"showcase"
+			],
 			"slug": "welcome-2",
 			"cover": "https://picsum.photos/1600/900",
 			"cta": "The integrated blogging experience",
@@ -46,6 +56,46 @@
 				"showcase"
 			],
 			"slug": "welcome-5",
+			"cover": "https://picsum.photos/1600/900",
+			"cta": "The integrated blogging experience",
+			"date": 1651104000000
+		},
+		{
+			"title": "My new blog!",
+			"tags": [
+				"showcase"
+			],
+			"slug": "welcome-1",
+			"cover": "https://picsum.photos/1600/900",
+			"cta": "The integrated blogging experience",
+			"date": 1651104000000
+		},
+		{
+			"title": "My new blog!",
+			"tags": [
+				"showcase"
+			],
+			"slug": "welcome-1",
+			"cover": "https://picsum.photos/1600/900",
+			"cta": "The integrated blogging experience",
+			"date": 1651104000000
+		},
+		{
+			"title": "My new blog!",
+			"tags": [
+				"showcase"
+			],
+			"slug": "welcome-1",
+			"cover": "https://picsum.photos/1600/900",
+			"cta": "The integrated blogging experience",
+			"date": 1651104000000
+		},
+		{
+			"title": "My new blog!",
+			"tags": [
+				"showcase"
+			],
+			"slug": "welcome-1",
 			"cover": "https://picsum.photos/1600/900",
 			"cta": "The integrated blogging experience",
 			"date": 1651104000000
