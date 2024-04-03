@@ -34,7 +34,7 @@ if (!existsSync("./src/data/meta.json"))
   writeFileSync("./src/data/meta.json", JSON.stringify({ posts: [] }));
 const meta = JSON.parse(readFileSync("./src/data/meta.json", "utf8"));
 
-export async function process(file) {
+export async function process(file, FORCE) {
   const fname = basename(file, ".md");
   const start = Date.now();
   const content = readFileSync(file, "utf-8");
@@ -45,7 +45,7 @@ export async function process(file) {
 
   const contentHash = createHash("sha1").update(content).digest("base64");
 
-  if (internal.hashes[fname] == contentHash) {
+  if (!FORCE && internal.hashes[fname] == contentHash) {
     return meta.posts.find((x) => x.frontmatter.fname == fname);
   }
 
@@ -152,11 +152,11 @@ export async function write(data, bar) {
   }
 
   try {
-    mkdirSync(resolve(`/public/${slug}`));
+    mkdirSync(resolve(`public/${slug}`));
   } catch {}
 
   const out = await ejs.renderFile("src/templates/post.ejs", {
-    title: frontmatter?.title,
+    frontmatter,
     content,
   });
 

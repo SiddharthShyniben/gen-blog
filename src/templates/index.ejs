@@ -14,22 +14,22 @@
 		<header>
 			<h1>IDE</h1>
 		</header>
-		<% const sortedPosts = posts.sort((a, b) => b.date - a.date); %>
+    <% const sortedPosts = posts.map(x => x.frontmatter).sort((a, b) => b.date - a.date); %>
 
     <div class="latest">
       <div class="main-post">
-					<img src='<%= posts[0].cover %>' alt='<%= posts[0].title %>' class='cover'>
+					<img src='<%= sortedPosts[0].cover %>' alt='<%= sortedPosts[0].title %>' class='cover'>
 					<div class='meta'>
 						<p class="date">
-							<%= new Date(posts[0].date).toLocaleString(undefined, {
+							<%= new Date(sortedPosts[0].date).toLocaleString(undefined, {
 								year: 'numeric',
 								weekday: 'long',
 								month: 'long',
 								day: 'numeric',
 							}) %>
 						</p>
-						<h2><a href='/<%= posts[0].slug %>'><%= posts[0].title %></a></h2>
-						<p><%= posts[0].cta %></p>
+						<h2><a href='/<%= sortedPosts[0].slug %>'><%= sortedPosts[0].title %></a></h2>
+						<p><%= sortedPosts[0].cta %></p>
 					</div>
       </div>
     </div>

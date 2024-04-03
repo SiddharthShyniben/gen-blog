@@ -192,3 +192,28 @@ pre {
 body {
   overflow-x: hidden;
 }
+
+img {
+  width: 100%;
+}
+
+.cover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  mask-image: linear-gradient(to bottom, #1a1b2630, #1a1b2600);
+}
+
+.tags {
+  margin-bottom: 3rem;
+}
+
+.tags .tag {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}

@@ -9,6 +9,8 @@ date: 2022-04-28
 
 ## Table of Contents
 
+## Introduction
+
 This is my new blog!
 
 It's custom built from a fragile combination of Node.js, EJS, remark, rehype,
@@ -17,6 +19,8 @@ and some other stuff.
 It's still a bit rough and buggy, and I've not even *touched* SEO. But I've
 added some really cool features related to the blog post content that will blow
 your mind!
+
+![Image lol](/img/debugging.png)
 
 ## Better code blocks
 
