@@ -7,6 +7,9 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "exit 0"
 	},
+  "exports": {
+    ".": "./index.js"
+  },
 	"keywords": [],
 	"author": "Siddharth Shyniben <siddharth.muscat@gmail.com>",
 	"license": "ISC",

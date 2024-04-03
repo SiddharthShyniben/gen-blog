@@ -18,7 +18,7 @@ It's still a bit rough and buggy, and I've not even *touched* SEO. But I've
 added some really cool features related to the blog post content that will blow
 your mind!
 
-## Better code blocks!!!
+## Better code blocks
 
 The one feature which was the hugest headache is this:
 

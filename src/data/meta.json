@@ -1,14 +1,17 @@
 {
 	"posts": [
 		{
-			"title": "My new blog!",
-			"tags": [
-				"showcase"
-			],
-			"slug": "welcome-1",
-			"cover": "https://picsum.photos/1600/900",
-			"cta": "The integrated blogging experience",
-			"date": 1651104000000
+			"frontmatter": {
+				"title": "My new blog!",
+				"tags": [
+					"showcase"
+				],
+				"slug": "welcome-1",
+				"cover": "https://picsum.photos/1600/900",
+				"cta": "The integrated blogging experience",
+				"date": 1651104000000,
+				"fname": "my-new-blog-1"
+			}
 		}
 	]
 }

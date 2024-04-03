@@ -21,17 +21,35 @@ import rehypeSlug from "rehype-slug";
 import rehypeShiki from "@shikijs/rehype";
 import { transformerTwoslash, rendererRich } from "@shikijs/twoslash";
 
-import { basename, join } from "path";
-import { writeFileSync, readFileSync, mkdirSync } from "fs";
+import { basename, resolve } from "path";
+import { writeFileSync, readFileSync, mkdirSync, existsSync } from "fs";
 import { arrow, _arrow } from "./utils.js";
 import remarkOembed from "remark-oembed";
 import remarkPresetLintRecommended from "remark-preset-lint-recommended";
 import tokyonight from "./themes/tokyo-night-storm-color-theme.json" assert { type: "json" };
+import { commitData, getInternalData, writeInternalData } from "./save.js";
+import { createHash } from "crypto";
+
+if (!existsSync("./src/data/meta.json"))
+  writeFileSync("./src/data/meta.json", JSON.stringify({ posts: [] }));
+const meta = JSON.parse(readFileSync("./src/data/meta.json", "utf8"));
 
 export async function process(file) {
   const fname = basename(file, ".md");
   const start = Date.now();
   const content = readFileSync(file, "utf-8");
+
+  const internal = getInternalData();
+  internal.ratios ??= [];
+  internal.hashes ??= {};
+
+  const contentHash = createHash("sha1").update(content).digest("base64");
+
+  if (internal.hashes[fname] == contentHash) {
+    return meta.posts.find((x) => x.frontmatter.fname == fname);
+  }
+
+  internal.hashes[fname] = contentHash;
 
   let frontmatter = {};
 
@@ -44,11 +62,27 @@ export async function process(file) {
     Presets.shades_classic,
   );
 
-  bar.start(9, 0, { step: "" });
-  const log = (step) => () => () => bar.increment({ step });
+  let i = 0;
+  let stepStart = Date.now();
+  bar.start(internal.ratios.reduce((a, b) => a + b, 0) || 8, 0, { step: "" });
+
+  const log =
+    (step, addRatio = true) =>
+    () =>
+    () => {
+      let elapsed = Date.now() - stepStart;
+      stepStart = Date.now();
+      if (addRatio) {
+        if (internal.ratios[i])
+          internal.ratios[i] = (internal.ratios[i] + elapsed) / 2;
+        else internal.ratios[i] = elapsed;
+      }
+
+      bar.increment(addRatio ? internal.ratios[i++] || 1 : 0, { step });
+    };
 
   const rendered = await unified()
-    .use(log("Parsing markdown..."))
+    .use(log("Parsing markdown...", false))
     .use(remarkPresetLintRecommended)
     .use(remarkParse)
     .use(log("Extracting frontmatter..."))
@@ -87,15 +121,18 @@ export async function process(file) {
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content);
 
-  let slug = frontmatter?.slug ?? basename(file, ".md");
+  let slug = frontmatter?.slug ?? fname;
+  frontmatter.slug ??= slug;
 
   if (frontmatter?.date)
     frontmatter.date = new Date(frontmatter.date).getTime();
 
   frontmatter.date ??= new Date().getTime();
   frontmatter.tags ??= [];
+  frontmatter.fname = fname;
 
   log(`Finished in \x1b[32m${Date.now() - start}ms\x1b[0m`)()();
+  writeInternalData(internal);
 
   bar.stop();
 
@@ -109,27 +146,36 @@ export async function process(file) {
 
 export async function write(data, bar) {
   const { slug, content, frontmatter } = data;
+  if (!slug) {
+    bar.increment({ step: `Skipped ${frontmatter.slug}` });
+    return { frontmatter };
+  }
+
   try {
-    mkdirSync(`../public/${slug}`);
+    mkdirSync(resolve(`/public/${slug}`));
   } catch {}
 
-  const out = await ejs.renderFile("templates/post.ejs", {
+  const out = await ejs.renderFile("src/templates/post.ejs", {
     title: frontmatter?.title,
     content,
   });
 
-  writeFileSync(`../public/${slug}/index.html`, out);
+  writeFileSync(resolve(`public/${slug}/index.html`), out);
   bar.increment({ step: `../public/${slug}/index.html` });
-  return frontmatter;
+  return { frontmatter };
 }
 
 export function writeMetaData(posts) {
-  writeFileSync("data/meta.json", JSON.stringify({ posts }, null, "\t"));
+  writeFileSync(
+    resolve("src/data/meta.json"),
+    JSON.stringify({ posts }, null, "\t"),
+  );
   arrow(1, "Wrote", "meta.json");
+  commitData();
 }
 
 export async function writeIndex(posts) {
-  const out = await ejs.renderFile("templates/index.ejs", { posts });
-  writeFileSync(join(import.meta.dirname, "../public/index.html"), out);
+  const out = await ejs.renderFile("src/templates/index.ejs", { posts });
+  writeFileSync(resolve("public/index.html"), out);
   arrow(1, "Wrote index.html");
 }
