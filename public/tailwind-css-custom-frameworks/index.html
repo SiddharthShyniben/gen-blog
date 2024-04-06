@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title><%= frontmatter.title %></title>
+		<title>A new way to build CSS frameworks with... TailwindCSS?</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,19 +21,33 @@
 			<h1><a href='/'>IDE</a></h1>
 		</header>
 		<div class='main'>
-      <h1><%= frontmatter.title %></h1>
+      <h1>A new way to build CSS frameworks with... TailwindCSS?</h1>
       <div class='tags'>
-        <%- frontmatter.tags.map(t => `<span class='tag'>#${t}</span>`) %>
+        <span class='tag'>#css</span>,<span class='tag'>#tailwindcss</span>
       </div>
-      <img src="<%= frontmatter.cover %>" class="cover-img"/>
+      <img src="https://picsum.photos/1600/900" class="cover-img"/>
       <div class="wysiwyg content">
-        <%- content %>
+        <p>TailwindCSS has a great color scheme, good default styles, a way to remove unused classes, a way to make custom classes, and lots more. It would be the greatest thing if we could use its styles to make our own CSS frameworks. Guess what, we can!</p>
+<p>I haven't done it yet, but the main steps look like so:</p>
+<ul>
+<li>Use tailwind's <code>@apply</code> to create your classes</li>
+<li>Create an HTML file (which will be used for purging unused classes)</li>
+<li>Run Tailwind (using PostCSS or whatever)</li>
+</ul>
+<p>That's it! You will get a new CSS file with your framework ready to use.</p>
+<p>There are a few more things you could try:</p>
+<ul>
+<li>Wanna use any of tailwind's built-in classes? Just add the classes to any elements in the HTML file I mentioned before, and they won't be removed from the CSS!</li>
+<li>Dig into the tailwind config files to get more stuff like dark mode, custom color schemes, plugins, and more!</li>
+<li>You got more ideas? Comment them down below!</li>
+</ul>
+<p>I think this is the same approach that tailwindui is using.</p>
       </div>
 		</div>
 
 		<footer>
 			<p>
-				&copy; <%= new Date().getFullYear() %> <a href='https://siddu.tech'>Sid</a>. All content is licensed
+				&copy; 2024 <a href='https://siddu.tech'>Sid</a>. All content is licensed
 				<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC BY-SA 4.0</a>.
 			</p>
 		</footer>

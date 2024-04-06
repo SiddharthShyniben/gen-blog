@@ -2,15 +2,58 @@
 	"posts": [
 		{
 			"frontmatter": {
-				"title": "My new blog!",
+				"title": "A better typeof",
 				"tags": [
-					"showcase"
+					"javascript",
+					"todayilearned"
 				],
-				"slug": "welcome-1",
+				"slug": "better-typeof",
 				"cover": "https://picsum.photos/1600/900",
-				"cta": "The integrated blogging experience",
-				"date": 1651104000000,
-				"fname": "my-new-blog-1"
+				"cta": "A replacement for the buggy JavaScript typeof",
+				"date": 1621728000000,
+				"fname": "a-better-typeof"
+			}
+		},
+		{
+			"frontmatter": {
+				"title": "A guide to planning a programming project.",
+				"tags": [
+					"productivity",
+					"planning"
+				],
+				"slug": "project-planning",
+				"cover": "https://picsum.photos/1600/900",
+				"cta": "A guide on how to plan a programming project from start to finish.",
+				"date": 1621641600000,
+				"fname": "a-guide-to-planning-a-programming-project"
+			}
+		},
+		{
+			"frontmatter": {
+				"title": "A new way to build CSS frameworks with... TailwindCSS?",
+				"tags": [
+					"css",
+					"tailwindcss"
+				],
+				"slug": "tailwind-css-custom-frameworks",
+				"cover": "https://picsum.photos/1600/900",
+				"cta": "Tailwind gives us all the tools to create our own frameworks!",
+				"date": 1624233600000,
+				"fname": "a-new-way-to-build-css-frameworks-with-tailwindcss"
+			}
+		},
+		{
+			"frontmatter": {
+				"title": "A quick shortcut to throw errors for function params",
+				"tags": [
+					"javascript",
+					"tips"
+				],
+				"slug": "param-error-shortcut",
+				"cover": "https://picsum.photos/1600/900",
+				"cta": "Removes quite a lot of duplicated code",
+				"date": 1623196800000,
+				"fname": "a-quick-shortcut-to-throw-errors-for-function-params"
 			}
 		}
 	]
