@@ -50,10 +50,23 @@
 					"tips"
 				],
 				"slug": "param-error-shortcut",
-				"cover": "/db.png",
+				"cover": "/fp.png",
 				"cta": "Removes quite a lot of duplicated code",
 				"date": 1623196800000,
 				"fname": "a-quick-shortcut-to-throw-errors-for-function-params"
+			}
+		},
+		{
+			"frontmatter": {
+				"title": "Scratchpad, a new prototyping tool for JavaScript",
+				"tags": [
+					"javascript"
+				],
+				"cover": "/scratch.png",
+				"cta": "A small yet powerful JavaScript prototyping tool",
+				"date": 1712534400000,
+				"slug": "scratchpad",
+				"fname": "scratchpad"
 			}
 		},
 		{
