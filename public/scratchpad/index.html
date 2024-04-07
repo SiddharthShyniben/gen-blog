@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Scratchpad, a new prototyping tool for JavaScript</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="../wysiwyg.css" /> -->
+		<link rel='stylesheet' href='../normalize.css'>
+		<link rel='stylesheet' href='../style.css'>
+		<link rel='stylesheet' href='../style-rich.css'>
+	</head>
+	<body>
+		<header>
+			<h1><a href='/'>IDE</a></h1>
+		</header>
+		<div class='main'>
+      <h1>Scratchpad, a new prototyping tool for JavaScript</h1>
+      <div class='tags'>
+        <span class='tag'>#javascript</span>
+      </div>
+      <img src="/scratch.png" class="cover-img"/>
+      <div class="wysiwyg content">
+        <p><img src="/scratch.png" alt="Scratchpad"></p>
+<figcaption>A fully fledged prototype</figcaption>
+<p>Scratchpad is a small yet powerful tool for experimentation and prototyping in
+JavaScript. It serves as a fully fledged, in-browser REPL. Inspired from tools
+like runkit and replit, scratchpad solves many of the small problems found in
+these tools and provides a tool for a more small scale protoyping use case.</p>
+<p>You can create and run JavaScript scripts in the browser using scratchpad. Each
+script consists of a number of sections of either text or code. The division of
+code into multiple sections allows for running them independently, which is
+handy in a prototyping use case.</p>
+<p><img src="/scratch2.png" alt="Sample"></p>
+<figcaption>A demo of scratchpad</figcaption>
+<p>All your scratchpads are saved in the browser in localStorage. Hence, saving
+and loading times are extremely fast.</p>
+<p>Scratchpad also provides a fully fledged editor using
+<a href="https://codemirror.net/">CodeMirror</a>, which allows you use autocomplete, find
+and replace, folding, and so much more!</p>
+<p><img src="/scratch3.png" alt="Demo"></p>
+<figcaption>Smart autocomplete with snippets</figcaption>
+<p><img src="/scratch4.png" alt="Demo"></p>
+<figcaption>Find and replace</figcaption>
+<h2 id="small-features"><a aria-hidden="true" tabindex="-1" href="#small-features"><span class="icon icon-link"></span></a>Small features</h2>
+<p>One of the many reasons that prompted me to build this tool was the small improvements I could bring.</p>
+<p>Before I developed scratchpad, I used runkit as my prototyping tool. It was an
+excellent tool but I always had one problem - every time I went to the "New"
+page but didn't create anything, runkit created a blank script for me anyways.
+This was a small bug, but I used runkit so commonly that I had tons of empty
+scripts clogging up my home screen. In scratchpad, a new pad is created only if
+a title is entered.</p>
+<p>Another small feature is the support for all the <code>console.*</code> functions:</p>
+<p><img src="/scratch5.png" alt="Demo"></p>
+<figcaption></figcaption>
+<p>The <code>console.debug</code> output is disabled by default, and can be enabled manually in settings.</p>
+<h2 id="microinteraction"><a aria-hidden="true" tabindex="-1" href="#microinteraction"><span class="icon icon-link"></span></a>Microinteraction</h2>
+<p>One thing I particularly loved implementing were all the microinteractions.
+Look at this delightful animation for deleting a scratchpad:</p>
+<p><img src="/scratch-delete_quick.gif" alt="Animation for deletion"></p>
+<figcaption></figcaption>
+<p>Or this one for cloning a pad:</p>
+<p><img src="/scratch-clone_quick.gif" alt="Animation for cloning"></p>
+<figcaption></figcaption>
+<p>The animations are all minimal and suit the programming vibes of the overall
+project. Such microinteractions are a small yet powerful inclusion to projects.</p>
+<p>Another cool animation is the home screen for when there are no scratchpads to show:</p>
+<p><img src="/scratch-empty_quick.gif" alt="Animation for empty home page"></p>
+<figcaption></figcaption>
+<p>The animation is disabled for anybody who <code>prefers-reduced-motion</code>, so accesibility concerns aren't an issue here!</p>
+      </div>
+		</div>
+
+		<footer>
+			<p>
+				&copy; 2024 <a href='https://siddu.tech'>Sid</a>. All content is licensed
+				<a href='https://creativecommons.org/licenses/by-sa/4.0/'>CC BY-SA 4.0</a>.
+			</p>
+		</footer>
+
+		<script>
+			document.querySelector('button.share').addEventListener('click', function () {
+				window.open(`https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20blog%20post%20by%20Sid!&url=${window.location}`);
+			})
+			document.querySelector('.heart').addEventListener('click', function () {
+			   this.classList.toggle('active');
+			   like();
+			})
+
+			function like() {
+				fetch('https://gen-be-production.up.railway.app/like?id=' +
+				   encodeURIComponent(window.location.href), {method: 'POST'})
+			}
+
+			async function updateLikes() {
+				const likes = await fetch('https://gen-be-production.up.railway.app/like?id=' +
+				   encodeURIComponent(window.location.href)).then(res => res.json());
+				document.querySelector('.likes').innerText = likes.likes;
+			}
+		</script>
+	</body>
+</html>
