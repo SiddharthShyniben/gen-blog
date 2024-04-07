@@ -9,7 +9,7 @@ date: 2024-04-08
 ![Scratchpad](/scratch.png)
 <figcaption>A fully fledged prototype</figcaption>
 
-Scratchpad is a small yet powerful tool for experimentation and prototyping in
+[Scratchpad] is a small yet powerful tool for experimentation and prototyping in
 JavaScript. It serves as a fully fledged, in-browser REPL. Inspired from tools
 like runkit and replit, scratchpad solves many of the small problems found in
 these tools and provides a tool for a more small scale protoyping use case.
@@ -75,3 +75,6 @@ Another cool animation is the home screen for when there are no scratchpads to s
 <figcaption></figcaption>
 
 The animation is disabled for anybody who `prefers-reduced-motion`, so accesibility concerns aren't an issue here!
+
+
+[Scratchpad]: https://scratchpad-five.vercel.app/
