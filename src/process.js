@@ -55,7 +55,7 @@ export async function process(file, FORCE) {
 
   const bar = new SingleBar(
     {
-      format: `   ${_arrow(2).trim()} \x1b[1;33m${fname.padEnd(30, " ")}\x1b[0m \x1b[33m{bar}\x1b[0m \x1b[2m({eta}s left)\x1b[0m {step}`,
+      format: `   ${_arrow(2).trim()} \x1b[1;33m${fname.padEnd(60, " ")}\x1b[0m \x1b[33m{bar}\x1b[0m \x1b[2m({eta}s left)\x1b[0m {step}`,
       barCompleteChar: "━",
       barIncompleteChar: "─",
     },
