@@ -2,7 +2,7 @@
 title: A new way to build CSS frameworks with... TailwindCSS?
 tags: [css, tailwindcss]
 slug: tailwind-css-custom-frameworks
-cover: https://picsum.photos/1600/900
+cover: /Tailwind.png
 cta: Tailwind gives us all the tools to create our own frameworks!
 date: 2021-06-21
 ---

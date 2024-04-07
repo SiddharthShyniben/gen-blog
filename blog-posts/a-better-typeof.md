@@ -2,7 +2,7 @@
 title: A better typeof
 tags: [javascript, todayilearned]
 slug: better-typeof
-cover: https://picsum.photos/1600/900
+cover: /fp.png
 cta: A replacement for the buggy JavaScript typeof
 date: 2021-05-23
 ---

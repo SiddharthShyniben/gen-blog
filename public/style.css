@@ -259,3 +259,11 @@ figcaption {
 .content {
   margin-bottom: 3rem;
 }
+
+pre {
+  overflow-x: scroll;
+}
+
+.twoslash-meta-line {
+  display: block;
+}

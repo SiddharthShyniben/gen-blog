@@ -2,7 +2,7 @@
 title: A guide to planning a programming project.
 tags: [productivity, planning]
 slug: project-planning
-cover: https://picsum.photos/1600/900
+cover: /FP.png
 cta:  A guide on how to plan a programming project from start to finish.
 date: 2021-05-22
 ---
