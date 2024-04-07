@@ -151,9 +151,7 @@ export async function write(data, bar) {
     return { frontmatter };
   }
 
-  try {
-    mkdirSync(resolve(`public/${slug}`));
-  } catch {}
+  mkdirSync(resolve(`public/${slug}/`));
 
   const out = await ejs.renderFile("src/templates/post.ejs", {
     frontmatter,
