@@ -2,7 +2,7 @@
 title: A quick shortcut to throw errors for function params
 tags: [javascript, tips]
 slug: param-error-shortcut
-cover: /fp.png
+cover: /db.png
 cta: Removes quite a lot of duplicated code
 date: 2021-06-09
 ---
