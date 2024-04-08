@@ -147,7 +147,6 @@ button.sub {
   color: inherit;
   border-radius: 0.5em;
   padding: 0 1em;
-  margin: 0 1em;
   transition: all 0.25s ease-out;
 }
 
@@ -274,4 +273,37 @@ pre {
 .content kbd {
   color: #db4b4b;
   font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .post {
+    width: calc(50% - 2rem);
+  }
+
+  .subscribe {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 10rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-post img {
+    height: 30vh;
+  }
+
+  .post {
+    width: calc(100% - 2rem);
+    margin-bottom: 5rem;
+  }
+
+  .subs {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 30rem) {
+  button.sub {
+    margin: 0.5em 0;
+  }
 }
